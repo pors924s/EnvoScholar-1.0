@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Display Results</title>
+
+  <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../assets/fonts/font-awesome.min.css">
+  <link rel="stylesheet" href="../../../assets/fonts/typicons.min.css">
+  <link rel="stylesheet" href="../../../assets/css/Footer-Basic.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+  <link rel="stylesheet" href="../../../assets/css/Navigation-with-Search.css">
+  <link rel="stylesheet" href="../../../assets/css/styles.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="../../../citestyle.css" />
+
+  <script type="text/javascript" src="popup.js"></script>
+</head>
+
+<body>
+  <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color:#081E3F;">
+    <div class="container">
+
+      <a class="navbar-brand" href="http://localhost:4200/" style="color:#fff; margin-right: 100px">Envo Scholar</a>
+      <a class="navbar-brand" href="../src/ontology.html" style="color:#fff; margin-right: 100px">Ontology</a>
+      <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navcol-1">
+        <ul class="nav navbar-nav"></ul>
+        <form class="form-inline mr-auto" target="_self">
+          <div class="form-group">
+            <label for="search-field">
+              <i class="fa fa-search"></i>
+            </label>
+
+            <input ngModel name="search" #search="ngModel" (change)="log(search)" class="form-control" value="{{search}}" type="search" placeholder="Search Peer Reviewed Articles"
+              id="search-field" style="background-color: #fff;">
+
+            <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
+              class="searchbutton" role="button" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;">
+
+          </div>
+        </form>
+        <li class="nav-item" role="presentation">
+          <a class="nav-link active" href="http://localhost:4200/login" style="color:#fff;">
+            <i class="fa fa-pencil"></i>&nbsp; Sign in</a>
+        </li>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <div id="concepts">
+      <div class="jumbotron flex-grow-1 justify-content-between" class="text-center" style="background-color:#B6862C;">
+
+        <div *ngIf="response">
+          <div  style="display: inline-block">
+            
+            <button *ngFor="let hit of response.hits.hits | paginate: { itemsPerPage:6, currentPage: p} let i = index" id="concept" (click)="addConcept(i)" class="btn btn-primary"
+              role="button">{{hit._source.keywords[0].keyword}}</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
+      <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
+
+        <div *ngIf="response">
+          <div *ngFor="let hit of response.hits.hits | paginate: { itemsPerPage:10, currentPage: p}">
+            <div style="background-color: rgba(0,0,0,.02)">
+              <a href="{{hit._source.url}}" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
+              <br>
+              <p class="authorName" style="margin-top: 15px;">{{hit._source.authors[0].name}} - </p>
+              <p class="year">{{hit._source.cover_date | slice : 0 : 10}} </p>
+              <p>{{ hit._source.abstract | slice:0:200}}...</p>
+
+              <div style="margin-bottom: 10px;">
+                <div id="popupbox" class="popupposition">
+                  <div id="popupwrapper">
+                    <div id="container">
+                      <h3>MLA</h3>
+                      <p>Casagrande, Daniel J., et al. "Sulfur in peat-forming systems of the Okefenokee Swamp and Florida Everglades:
+                        origins of sulfur in coal." Geochimica et Cosmochimica Acta 41.1 (1977): 161-167.</p>
+                      <p>
+                        <a href="javascript:void(0)" onclick="toggle_visibility('popupbox');">Close</a>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <a href="#" id="subtasks">
+                  <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF</a>
+                <a href="javascript:void(0)" onclick="toggle_visibility('popupbox');" id="subtasks">
+                  <i class="fa fa-quote-right"></i>&nbsp;Cite</a>
+                <a href="#" id="subtasks">&nbsp;
+                  <i class="fa fa-save"></i>&nbsp;Save</a>
+              </div>
+            </div>
+          </div>
+          <pagination-controls (pageChange)="p =$event"></pagination-controls>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="footer-basic">
+    <footer>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="#">Home</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Services</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">About</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Terms</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Privacy Policy</a>
+        </li>
+      </ul>
+      <p class="copyright">Envo Scholar © 2018</p>
+    </footer>
+  </div>
+  <script src="assets/js/jquery.min.js"></script>
+  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+  <script src="assets/js/bs-animation.js"></script>
+</body>
+
+</html>
