@@ -31,8 +31,15 @@ export class DisplayresultsComponent implements OnInit {
 
   public addConcept(index: number) {
     window.location.href =
-      window.location +
-      " " +
+      'http://localhost:4200/displayresults?search=' +
       this.response.hits.hits[index]._source.keywords[0].keyword;
+  }
+  /* SORT */
+  //set default
+  key: string = '_score';
+  //reverse: boolean = false;
+  sort(key){
+    this.key = key;
+    //this.reverse = !this.reverse;
   }
 }
