@@ -46,6 +46,14 @@ export class DisplayresultsComponent implements OnInit {
       "http://localhost:4200/displayresults?search=" +
       this.response.hits.hits[index]._source.keywords[0].keyword;
   }
+  /* SORT */
+  //set default
+  key: string = '_score';
+  //reverse: boolean = false;
+  sort(key){
+    this.key = key;
+    //this.reverse = !this.reverse;
+  }
 
   /**
    * This function is called when the user clicks on Cite. It will create a popup box
