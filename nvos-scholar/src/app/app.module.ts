@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 
+//Routes
 const routes: Routes = [
   {
     path: "homepage",
@@ -19,6 +20,10 @@ const routes: Routes = [
     component: DisplayresultsComponent
   },
   {
+    /**
+     * If a path is entered to the url and it is not defined here
+     * then it will default to 'homepage'
+     */
     path: "",
     redirectTo: "homepage",
     pathMatch: "full"
@@ -30,7 +35,6 @@ const routes: Routes = [
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
-
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
