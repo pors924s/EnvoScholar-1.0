@@ -40,8 +40,6 @@
             <label style="color:#B6862C;" for="search-field">
               <i class="fa fa-search"></i>
             </label>
-
-
             <!--Search Bar-->
             <input ngModel name="search" #search="ngModel" (change)="log(search)" class="form-control" value="{{search}}" type="search"
               placeholder="Search Peer Reviewed Articles" id="search-field" style="background-color: #fff;">
@@ -49,10 +47,10 @@
             <!--Submit Button-->
             <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
               class="searchbutton" role="button" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;">
-
-
           </div>
         </form>
+
+        <!--Login Button-->
         <li class="nav-item" role="presentation">
           <a class="nav-link active" href="http://localhost:4200/login" style="color:#fff;">
             <i class="fa fa-pencil"></i>&nbsp; Sign in</a>
@@ -60,6 +58,8 @@
       </div>
     </div>
   </nav>
+
+  <!--Concepts-->
   <div class="container">
     <div id="concepts">
       <div class="jumbotron flex-grow-1 justify-content-between" class="text-center" style="background-color:#B6862C;">
@@ -67,6 +67,7 @@
         <div *ngIf="response">
           <div style="display: inline-block">
 
+            <!--Functionality for dynamically generating concept buttons-->
             <button *ngFor="let hit of response.hits.hits | paginate: { itemsPerPage:6, currentPage: p} let i = index" id="concept" (click)="addConcept(i)"
               class="btn btn-primary" role="button">{{hit._source.keywords[0].keyword}}</button>
           </div>
@@ -74,6 +75,8 @@
 
       </div>
     </div>
+
+    <!--Sort page by article date or relevance (default)-->
     <form>
       <fieldset>
         <legend>Sort</legend>
@@ -88,18 +91,25 @@
 
       </fieldset>
     </form>
+
+    <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
 
         <div *ngIf="response">
           <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p}">
             <div style="background-color: rgba(0,0,0,.02)">
+              <!--Article title with link to URL-->
               <a href="{{hit._source.url}}" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
               <br>
+              <!--Article author-->
               <p class="authorName" style="margin-top: 15px;">{{hit._source.authors[0].name}} - </p>
+              <!--Article date-->
               <p class="year">{{hit._source.cover_date | slice : 0 : 10}} </p>
+              <!--Article abstract-->
               <p>{{ hit._source.abstract | slice:0:200}}...</p>
 
+              <!--Citation button with popup box-->
               <div style="margin-bottom: 10px;">
                 <div id="popupbox" class="popupposition">
                   <div id="popupwrapper">
@@ -122,12 +132,14 @@
               </div>
             </div>
           </div>
+          <!--Event handler for pagination-->
           <pagination-controls (pageChange)="p =$event"></pagination-controls>
         </div>
       </div>
     </div>
-
   </div>
+
+  <!--Footer-->
   <div class="footer-basic">
     <footer>
       <ul class="list-inline">
