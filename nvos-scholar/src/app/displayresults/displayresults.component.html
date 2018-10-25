@@ -49,7 +49,7 @@
             <!--Submit Button-->
             <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
               class="searchbutton" role="button" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;">
-            
+
 
           </div>
         </form>
@@ -75,20 +75,18 @@
       </div>
     </div>
     <form>
-        <fieldset>
-            <legend>Sort</legend>
-    
-            <div>
-                <input type="radio" id="relevance"
-                       name="sort" value="relevance" (click)="sort('_score')" checked />
-                <label for="relevance">Relevance</label>
+      <fieldset>
+        <legend>Sort</legend>
 
-                <input type="radio" id="recency"
-                       name="sort" value="recency" (click)="sort('_source.cover_date')" />
-                <label for="recency">Recency</label>
-            </div>
-    
-        </fieldset>
+        <div>
+          <input type="radio" id="relevance" name="sort" value="relevance" (click)="sort('_score')" checked />
+          <label for="relevance">Relevance</label>
+
+          <input type="radio" id="recency" name="sort" value="recency" (click)="sort('_source.cover_date')" />
+          <label for="recency">Recency</label>
+        </div>
+
+      </fieldset>
     </form>
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
