@@ -77,7 +77,7 @@
     </div>
 
     <!--Sort page by article date or relevance (default)-->
-    <form>
+    <!--form>
       <fieldset>
         <legend>Sort</legend>
 
@@ -90,7 +90,11 @@
         </div>
 
       </fieldset>
-    </form>
+    </form-->
+    <select>
+      <option (click)="sort('_score')">Relevance</option>
+      <option (click)="sort('_source.cover_date')">Recency</option>
+    </select>
 
     <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
