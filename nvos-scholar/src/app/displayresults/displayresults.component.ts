@@ -48,9 +48,9 @@ export class DisplayresultsComponent implements OnInit {
   }
   /* SORT */
   //set default
-  key: string = '_score';
+  key: string = "_score";
   //reverse: boolean = false;
-  sort(key){
+  sort(key) {
     this.key = key;
     //this.reverse = !this.reverse;
   }
@@ -66,5 +66,18 @@ export class DisplayresultsComponent implements OnInit {
     } else {
       e.style.display = "block";
     }
+  }
+
+  getDate(year: number) {
+    var i: number;
+    var date: string[] = new Array(100);
+    for (i = 0; i < 100; i++) {
+      if (
+        this.response.hits.hits[i]._source.cover_date.includes(year) === true
+      ) {
+        date[i] = this.response.hits.hits[i]._source.cover_date;
+      }
+    }
+    console.log(date);
   }
 }

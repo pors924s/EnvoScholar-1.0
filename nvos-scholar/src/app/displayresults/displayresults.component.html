@@ -91,10 +91,37 @@
 
       </fieldset>
     </form-->
+
     <select>
+      <option>Sort</option>
       <option (click)="sort('_score')">Relevance</option>
       <option (click)="sort('_source.cover_date')">Recency</option>
     </select>
+
+    <select>
+      <option>Filter</option>
+      <option (click)="getDate(1999)">1999</option>
+      <option (click)="getDate(2000)">2000</option>
+      <option (click)="getDate(2001)">2001</option>
+      <option (click)="getDate(2002)">2002</option>
+      <option (click)="getDate(2003)">2003</option>
+      <option (click)="getDate(2004)">2004</option>
+      <option (click)="getDate(2005)">2005</option>
+      <option (click)="getDate(2006)">2006</option>
+      <option (click)="getDate(2007)">2007</option>
+      <option (click)="getDate(2008)">2008</option>
+      <option (click)="getDate(2009)">2009</option>
+      <option (click)="getDate(2010)">2010</option>
+      <option (click)="getDate(2011)">2011</option>
+      <option (click)="getDate(2012)">2012</option>
+      <option (click)="getDate(2013)">2013</option>
+      <option (click)="getDate(2014)">2014</option>
+      <option (click)="getDate(2015)">2015</option>
+      <option (click)="getDate(2016)">2016</option>
+      <option (click)="getDate(2017)">2017</option>
+      <option (click)="getDate(2018)">2018</option>
+    </select>
+
 
     <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
