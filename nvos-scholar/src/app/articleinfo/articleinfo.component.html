@@ -20,6 +20,18 @@
 <body>
 
   <app-navbarwithsearch></app-navbarwithsearch>
+  <div style="margin-top: 100px; margin-right: 500px; margin-left: 15px; background-color: rgba(0,0,0,.025); float:left">
+    <h2>{{article_info._subscriptions[0].subject._value.article_title}}</h2>
+    <p style="color: green; display: inline ">{{article_info._subscriptions[0].subject._value.article_authors1}} - </p>
+    <p style="color: green; display: inline ">{{article_info._subscriptions[0].subject._value.article_year | slice : 0 : 10}}</p>
+
+
+    <p>{{article_info._subscriptions[0].subject._value.article_abstract}}</p>
+
+  </div>
+  <div style="display: inline;">
+    <button>Keyword</button>
+  </div>
 </body>
 
 </html>

@@ -74,9 +74,9 @@
 
         <div *ngIf="response">
           <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p} let i = index">
-            <div style="background-color: rgba(0,0,0,.02)">
+            <div style="background-color: rgba(0,0,0,.025)">
               <!--Article title with link to URL-->
-              <a routerLink="/page" [queryParams]="{search: search.value}" queryParamsHandling="merge" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
+              <a routerLink="/article" (click)="navigate(i)" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
               <br>
               <!--Article author-->
               <div style="display: inline" *ngFor="let author of response.hits.hits[i]._source.authors | slice:0:3">

@@ -23,7 +23,7 @@ const routes: Routes = [
     component: DisplayresultsComponent
   },
   {
-    path: "page",
+    path: "article",
     component: ArticleinfoComponent
   },
 

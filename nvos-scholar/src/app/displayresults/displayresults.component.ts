@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { Router, NavigationExtras } from "@angular/router";
 
 @Component({
   selector: "app-displayresults",
@@ -8,7 +9,7 @@ import { HttpClient } from "@angular/common/http";
 })
 export class DisplayresultsComponent implements OnInit {
   response: any;
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.search();
@@ -79,5 +80,18 @@ export class DisplayresultsComponent implements OnInit {
       }
     }
     console.log(date);
+  }
+
+  navigate(i: number) {
+    let navigationExtras: NavigationExtras = {
+      queryParams: {
+        article_title: this.response.hits.hits[i]._source.title,
+        article_url: this.response.hits.hits[i]._source.url,
+        article_abstract: this.response.hits.hits[i]._source.abstract,
+        article_authors1: this.response.hits.hits[i]._source.authors[0].name,
+        article_year: this.response.hits.hits[i]._source.cover_date
+      }
+    };
+    this.router.navigate(["article"], navigationExtras);
   }
 }
