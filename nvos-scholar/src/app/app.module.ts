@@ -21,7 +21,7 @@ const routes: Routes = [
     component: DisplayresultsComponent
   },
   {
-    path: "articleinfo",
+    path: "page",
     component: ArticleinfoComponent
   },
   {
