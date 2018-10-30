@@ -9,7 +9,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
-import { NavbarwithsearchComponent } from './navbarwithsearch/navbarwithsearch.component';
+import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
+import { ArticleInformationService } from "./article_information/article-information.service";
 
 //Routes
 const routes: Routes = [
@@ -25,6 +26,7 @@ const routes: Routes = [
     path: "page",
     component: ArticleinfoComponent
   },
+
   {
     /**
      * If a path is entered to the url and it is not defined here
@@ -53,7 +55,7 @@ const routes: Routes = [
     OrderModule
   ],
 
-  providers: [],
+  providers: [ArticleInformationService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
