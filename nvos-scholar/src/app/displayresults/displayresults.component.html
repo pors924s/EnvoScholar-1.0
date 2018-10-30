@@ -41,8 +41,8 @@
               <i class="fa fa-search"></i>
             </label>
             <!--Search Bar-->
-            <input ngModel name="search" #search="ngModel"  class="form-control" value="{{search}}" type="search"
-              placeholder="Search Peer Reviewed Articles" id="search-field" style="background-color: #fff;">
+            <input ngModel name="search" #search="ngModel" class="form-control" value="{{search}}" type="search" placeholder="Search Peer Reviewed Articles"
+              id="search-field" style="background-color: #fff;">
 
             <!--Submit Button-->
             <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
@@ -122,19 +122,23 @@
       <option (click)="getDate(2018)">2018</option>
     </select>
 
+    <button (click)="test()">TEST</button>
+
 
     <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
 
         <div *ngIf="response">
-          <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p}">
+          <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p} let i = index">
             <div style="background-color: rgba(0,0,0,.02)">
               <!--Article title with link to URL-->
               <a href="{{hit._source.url}}" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
               <br>
               <!--Article author-->
-              <p class="authorName" style="margin-top: 15px;">{{hit._source.authors[0].name}} - </p>
+              <div style="display: inline" *ngFor="let hit of response.hits.hits[i]._source.authors">
+                <p class="authorName" style="margin-top: 15px;">{{hit.name}} - </p>
+              </div>
               <!--Article date-->
               <p class="year">{{hit._source.cover_date | slice : 0 : 10}} </p>
               <!--Article abstract-->
