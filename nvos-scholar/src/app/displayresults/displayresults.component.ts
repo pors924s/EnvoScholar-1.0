@@ -80,15 +80,4 @@ export class DisplayresultsComponent implements OnInit {
     }
     console.log(date);
   }
-
-  test() {
-    var i: number;
-    var j: number;
-
-    for (i = 0; i < 10; i++) {
-      for (j = 0; j < this.response.hits.hits[i]._source.authors.length; j++) {
-        console.log(this.response.hits.hits[i]._source.authors[j].name);
-      }
-    }
-  }
 }
