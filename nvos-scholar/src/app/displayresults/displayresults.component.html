@@ -18,46 +18,8 @@
 </head>
 
 <body>
-  <!--Navigation Bar-->
-  <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color:#081E3F;">
-    <div class="container">
-
-      <!--Envo Scholar Tab-->
-      <a class="navbar-brand" href="http://localhost:4200/" style="color:#fff; margin-right: 100px">Envo Scholar</a>
-
-      <!--Ontology Tab-->
-      <a class="navbar-brand" href="../src/ontology.html" style="color:#fff; margin-right: 100px">Ontology</a>
-
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav"></ul>
-        <form class="form-inline mr-auto" target="_self">
-          <div class="form-group">
-            <label style="color:#B6862C;" for="search-field">
-              <i class="fa fa-search"></i>
-            </label>
-            <!--Search Bar-->
-            <input ngModel name="search" #search="ngModel" class="form-control" value="{{search}}" type="search" placeholder="Search Peer Reviewed Articles"
-              id="search-field" style="background-color: #fff;">
-
-            <!--Submit Button-->
-            <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
-              class="searchbutton" role="button" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;">
-          </div>
-        </form>
-
-        <!--Login Button-->
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" href="http://localhost:4600/login" style="color:#fff;">
-            <i class="fa fa-pencil"></i>&nbsp; Sign in</a>
-        </li>
-      </div>
-    </div>
-  </nav>
+  <!--Navbar Component-->
+  <app-navbarwithsearch></app-navbarwithsearch>
 
   <!--Concepts-->
   <div class="container">
@@ -75,22 +37,6 @@
 
       </div>
     </div>
-
-    <!--Sort page by article date or relevance (default)-->
-    <!--form>
-      <fieldset>
-        <legend>Sort</legend>
-
-        <div>
-          <input type="radio" id="relevance" name="sort" value="relevance" (click)="sort('_score')" checked />
-          <label for="relevance">Relevance</label>
-
-          <input type="radio" id="recency" name="sort" value="recency" (click)="sort('_source.cover_date')" />
-          <label for="recency">Recency</label>
-        </div>
-
-      </fieldset>
-    </form-->
 
     <select>
       <option>Sort</option>
@@ -130,7 +76,7 @@
           <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p} let i = index">
             <div style="background-color: rgba(0,0,0,.02)">
               <!--Article title with link to URL-->
-              <a href="{{hit._source.url}}" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
+              <a routerLink="/page" [queryParams]="{search: search.value}" queryParamsHandling="merge" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
               <br>
               <!--Article author-->
               <div style="display: inline" *ngFor="let author of response.hits.hits[i]._source.authors | slice:0:3">

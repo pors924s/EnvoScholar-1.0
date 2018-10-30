@@ -9,6 +9,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
+import { NavbarwithsearchComponent } from './navbarwithsearch/navbarwithsearch.component';
 
 //Routes
 const routes: Routes = [
@@ -40,7 +41,8 @@ const routes: Routes = [
     AppComponent,
     HomepageComponent,
     DisplayresultsComponent,
-    ArticleinfoComponent
+    ArticleinfoComponent,
+    NavbarwithsearchComponent
   ],
   imports: [
     BrowserModule,
