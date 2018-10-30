@@ -8,7 +8,7 @@ import { FormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
-import { ArticleinfoComponent } from './articleinfo/articleinfo.component';
+import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 
 //Routes
 const routes: Routes = [
@@ -19,6 +19,10 @@ const routes: Routes = [
   {
     path: "displayresults",
     component: DisplayresultsComponent
+  },
+  {
+    path: "articleinfo",
+    component: ArticleinfoComponent
   },
   {
     /**
@@ -32,7 +36,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent, DisplayresultsComponent, ArticleinfoComponent],
+  declarations: [
+    AppComponent,
+    HomepageComponent,
+    DisplayresultsComponent,
+    ArticleinfoComponent
+  ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
