@@ -15,22 +15,31 @@
   <link rel="stylesheet" href="../../../assets/css/Navigation-with-Search.css">
   <link rel="stylesheet" href="../../../assets/css/styles.css">
   <link rel="stylesheet" type="text/css" media="screen" href="../../../citestyle.css" />
+
 </head>
 
 <body>
 
+  <!--Navbar Component-->
   <app-navbarwithsearch></app-navbarwithsearch>
-  <div style="margin-top: 100px; margin-right: 500px; margin-left: 15px; background-color: rgba(0,0,0,.025); float:left">
-    <h2>{{article_info._subscriptions[0].subject._value.article_title}}</h2>
-    <p style="color: green; display: inline ">{{article_info._subscriptions[0].subject._value.article_authors1}} - </p>
-    <p style="color: green; display: inline ">{{article_info._subscriptions[0].subject._value.article_year | slice : 0 : 10}}</p>
 
+  <!--Article information-->
+  <div id="info">
+    <h2>{{article._source.title}}</h2>
+    <p *ngFor="let author of authors" id="author">{{author.name}} - </p>
+    <p id="year">{{article._source.cover_date | slice : 0 : 10}}</p>
+    <p>{{article._source.abstract}}</p>
 
-    <p>{{article_info._subscriptions[0].subject._value.article_abstract}}</p>
+    <button (click)="articleURL(article._source.url)" id="website">Article Website</button>
+    <button id="save">Save</button>
+    <button id="cite">Cite</button>
 
   </div>
-  <div style="display: inline;">
-    <button>Keyword</button>
+
+  <!--Concepts-->
+  <div id="keywords">
+    <h3 style="margin-left: 6px;">Concepts:</h3>
+    <a href="" *ngFor="let concept of concepts; let i = index" class="keyword">{{article._source.keywords[i].keyword}}</a>
   </div>
 </body>
 

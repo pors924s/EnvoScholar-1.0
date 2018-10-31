@@ -1,0 +1,39 @@
+#info {
+  margin-top: 70px;
+  margin-left: 10px;
+  width: 800px;
+  margin-right: 10px;
+  float: left;
+  background-color: rgba(0, 0, 0, 0.025);
+}
+#author,
+#year {
+  color: green;
+  display: inline;
+}
+#keywords {
+  background-color: rgba(0, 0, 0, 0.025);
+  margin-top: 70px;
+  width: 450px;
+  float: left;
+}
+
+.keyword {
+  display: block;
+  margin: 10px;
+}
+
+#website,
+#save,
+#cite {
+  margin: 10px;
+  color: #b6862c;
+  background-color: #081e3f;
+  border-color: #b6862c;
+  border-radius: 18px;
+  padding-right: 15px;
+  padding-left: 15px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  display: inline;
+}

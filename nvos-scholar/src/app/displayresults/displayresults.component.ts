@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, NavigationExtras } from "@angular/router";
+import { ArticleInformationService } from "../article_information/article-information.service";
 
 @Component({
   selector: "app-displayresults",
@@ -9,7 +10,11 @@ import { Router, NavigationExtras } from "@angular/router";
 })
 export class DisplayresultsComponent implements OnInit {
   response: any;
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private article_info: ArticleInformationService
+  ) {}
 
   ngOnInit() {
     this.search();
@@ -23,16 +28,18 @@ export class DisplayresultsComponent implements OnInit {
    */
 
   search() {
-    var Query: string = window.location.search.substring(1).split("=")[1];
-    var spacedQuery: string = Query.replace(/%20/gi, " ");
+    var query: string = window.location.search.substring(1).split("=")[1];
     this.http
       .get(
         "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q=" +
-          spacedQuery +
+          query +
           "&size=100"
       )
       .subscribe(response => {
+        //Set this.response to the JSON file
         this.response = response;
+        //Set this.article_info to the JSON file to be sent to another component through the ArticleInformationService
+        this.article_info.setJSONData(response);
         console.log(response);
       });
   }
@@ -82,14 +89,14 @@ export class DisplayresultsComponent implements OnInit {
     console.log(date);
   }
 
+  /**
+   * This function is called when a user clicks on an article link in display results. It sets the article index to the article_info to be called in the articleinfo
+   */
   navigate(i: number) {
+    this.article_info.setArticleIndex(i);
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        article_title: this.response.hits.hits[i]._source.title,
-        article_url: this.response.hits.hits[i]._source.url,
-        article_abstract: this.response.hits.hits[i]._source.abstract,
-        article_authors1: this.response.hits.hits[i]._source.authors[0].name,
-        article_year: this.response.hits.hits[i]._source.cover_date
+        article_id: this.response.hits.hits[i]._id
       }
     };
     this.router.navigate(["article"], navigationExtras);
