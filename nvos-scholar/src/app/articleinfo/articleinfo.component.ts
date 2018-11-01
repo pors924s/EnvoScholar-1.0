@@ -22,8 +22,7 @@ export class ArticleinfoComponent implements OnInit {
     this.http
       .get(
         "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q=" +
-          query +
-          "&size=100"
+          query
       )
       .subscribe(response => {
         //Set this.response to the JSON file

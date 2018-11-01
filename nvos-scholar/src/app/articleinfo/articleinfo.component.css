@@ -21,6 +21,7 @@
   margin-top: 30px;
   margin-left: 950px;
   margin-right: 80px;
+  padding-right: 100px;
   background-color: rgba(0, 0, 0, 0.025);
 }
 
@@ -51,4 +52,11 @@
 
 #abstract {
   font-family: Arial, Helvetica, sans-serif;
+}
+
+#citations {
+  background-color: rgba(0, 0, 0, 0.025);
+  margin-right: 350px;
+  margin-top: 30px;
+  margin-left: 80px;
 }
