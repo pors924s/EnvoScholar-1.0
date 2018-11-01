@@ -24,22 +24,30 @@
   <app-navbarwithsearch></app-navbarwithsearch>
 
   <!--Article information-->
-  <div id="info">
-    <h2>{{article._source.title}}</h2>
-    <p *ngFor="let author of authors" id="author">{{author.name}} - </p>
-    <p id="year">{{article._source.cover_date | slice : 0 : 10}}</p>
-    <p>{{article._source.abstract}}</p>
+  <div *ngIf="response">
+    <div id="info-background">
+      <div id="info">
+        <h2 class="header">{{article_title}}</h2>
+        <small *ngFor="let author of authors" id="author">{{author.name}} - </small>
+        <small id="year">{{year | slice : 0 : 10}}</small>
+        <p id="abstract">{{abstract}}</p>
 
-    <button (click)="articleURL(article._source.url)" id="website">Article Website</button>
-    <button id="save">Save</button>
-    <button id="cite">Cite</button>
+        <button (click)="articleURL(url)" id="website">Article Website</button>
+        <button id="save">Save</button>
+        <button id="cite">Cite</button>
 
-  </div>
+      </div>
+    </div>
 
-  <!--Concepts-->
-  <div id="keywords">
-    <h3 style="margin-left: 6px;">Concepts:</h3>
-    <a href="" *ngFor="let concept of concepts; let i = index" class="keyword">{{article._source.keywords[i].keyword}}</a>
+    <!--Concepts-->
+
+    <div id="concept-background">
+      <div id="keywords">
+        <h2 class="header" style="margin-left: 6px;">Concepts:</h2>
+        <a href="http://localhost:4200/displayresults?search={{concept.keyword}}" *ngFor="let concept of concepts; let i = index"
+          class="keyword">{{concept.keyword}}</a>
+      </div>
+    </div>
   </div>
 </body>
 

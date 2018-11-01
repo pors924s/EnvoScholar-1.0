@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, NavigationExtras } from "@angular/router";
-import { ArticleInformationService } from "../article_information/article-information.service";
 
 @Component({
   selector: "app-displayresults",
@@ -10,11 +9,7 @@ import { ArticleInformationService } from "../article_information/article-inform
 })
 export class DisplayresultsComponent implements OnInit {
   response: any;
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    private article_info: ArticleInformationService
-  ) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
     this.search();
@@ -39,7 +34,6 @@ export class DisplayresultsComponent implements OnInit {
         //Set this.response to the JSON file
         this.response = response;
         //Set this.article_info to the JSON file to be sent to another component through the ArticleInformationService
-        this.article_info.setJSONData(response);
         console.log(response);
       });
   }
@@ -93,10 +87,9 @@ export class DisplayresultsComponent implements OnInit {
    * This function is called when a user clicks on an article link in display results. It sets the article index to the article_info to be called in the articleinfo
    */
   navigate(i: number) {
-    this.article_info.setArticleIndex(i);
     let navigationExtras: NavigationExtras = {
       queryParams: {
-        article_id: this.response.hits.hits[i]._id
+        article_title: this.response.hits.hits[i]._source.title
       }
     };
     this.router.navigate(["article"], navigationExtras);
