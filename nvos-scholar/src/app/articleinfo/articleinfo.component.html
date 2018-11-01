@@ -32,9 +32,18 @@
         <small id="year">{{year | slice : 0 : 10}}</small>
         <p id="abstract">{{abstract}}</p>
 
+        <!--
         <button (click)="articleURL(url)" id="website">Article Website</button>
         <button id="save">Save</button>
         <button id="cite">Cite</button>
+        -->
+
+        <a href="{{url}}" id="subtasks">
+          <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF</a>
+        <a href="javascript:void(0)" (click)="toggle_cite('popupbox');" id="subtasks">
+          <i class="fa fa-quote-right"></i>&nbsp;Cite</a>
+        <a id="subtasks">&nbsp;
+          <i class="fa fa-save"></i>&nbsp;Save</a>
 
       </div>
     </div>

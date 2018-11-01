@@ -14,7 +14,7 @@
   color: green;
   display: inline;
   font-style: italic;
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #concept-background {
@@ -27,7 +27,7 @@
 .keyword {
   display: block;
   margin: 10px;
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #website,
@@ -46,9 +46,9 @@
 }
 
 .header {
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 #abstract {
-  font-family: "Times New Roman", Times, serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
