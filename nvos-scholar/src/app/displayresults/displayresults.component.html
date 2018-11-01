@@ -73,7 +73,7 @@
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
 
         <div *ngIf="response">
-          <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p} let i = index">
+          <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:6, currentPage: p} let i = index">
             <div style="background-color: rgba(0,0,0,.025)">
               <!--Article title with link to URL-->
               <a routerLink="/article" (click)="navigate(i)" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
@@ -112,7 +112,7 @@
             </div>
           </div>
           <!--Event handler for pagination-->
-          <pagination-controls (pageChange)="p =$event"></pagination-controls>
+          <pagination-controls (pageChange)="p =$event" onclick="window.scrollTo(0, 0)"></pagination-controls>
         </div>
       </div>
     </div>

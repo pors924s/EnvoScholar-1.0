@@ -10,7 +10,6 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
-import { ArticleInformationService } from "./article_information/article-information.service";
 
 //Routes
 const routes: Routes = [
@@ -55,7 +54,7 @@ const routes: Routes = [
     OrderModule
   ],
 
-  providers: [ArticleInformationService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
