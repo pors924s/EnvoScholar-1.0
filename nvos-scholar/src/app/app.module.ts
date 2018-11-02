@@ -10,6 +10,7 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
+import { environment } from "../environments/environment";
 
 //Routes
 const routes: Routes = [
@@ -25,7 +26,6 @@ const routes: Routes = [
     path: "article",
     component: ArticleinfoComponent
   },
-
   {
     /**
      * If a path is entered to the url and it is not defined here
