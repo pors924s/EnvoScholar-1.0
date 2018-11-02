@@ -26,6 +26,9 @@
   <!--Article information-->
   <div *ngIf="response">
     <div id="info-background">
+      <div>
+        <button id="follow">Follow</button>
+      </div>
       <div id="info">
         <h2 class="header">{{article_title}}</h2>
         <small *ngFor="let author of authors" id="author">{{author.name}} - </small>
@@ -38,18 +41,27 @@
         <button id="cite">Cite</button>
         -->
 
-        <a href="{{url}}" id="subtasks">
+        <a href="{{url}}" target="_blank" id="subtasks">
           <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF</a>
         <a href="javascript:void(0)" (click)="toggle_cite('popupbox');" id="subtasks">
           <i class="fa fa-quote-right"></i>&nbsp;Cite</a>
         <a id="subtasks">&nbsp;
           <i class="fa fa-save"></i>&nbsp;Save</a>
-
       </div>
     </div>
 
+    <!--Concepts-->
+    <div id="concept-background">
+      <div id="keywords">
+        <h2 class="header" style="margin-left: 6px;">Concepts</h2>
+        <a href="http://localhost:4200/displayresults?search={{concept.keyword}}" *ngFor="let concept of concepts; let i = index"
+          class="keyword">{{concept.keyword}}</a>
+      </div>
+    </div>
+
+    <h2 class="header" style="margin-left: 91px; margin-top: 30px;">Citations</h2>
+
     <div id="citations">
-      <h2 class="header" style="margin-left: 11px;">Citations</h2>
       <a href="" style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </a>
       <br>
       <small id="year" style="margin-left: 12px;">2000, Lorem ipsum dolor sit amet consectetur</small>
@@ -58,18 +70,59 @@
         similique!
       </p>
     </div>
-
-    <!--Concepts-->
-    <div id="concept-background">
-      <div id="keywords">
-        <h2 class="header" style="margin-left: 6px;">Concepts:</h2>
-        <a href="http://localhost:4200/displayresults?search={{concept.keyword}}" *ngFor="let concept of concepts; let i = index"
-          class="keyword">{{concept.keyword}}</a>
-      </div>
+    <div id="citations">
+      <a href="" style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </a>
+      <br>
+      <small id="year" style="margin-left: 12px;">2000, Lorem ipsum dolor sit amet consectetur</small>
+      <p style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque incidunt dolore quae aperiam iusto facere
+        sit molestias consequuntur explicabo blanditiis expedita, ipsa corporis temporibus officiis placeat, earum pariatur
+        similique!
+      </p>
     </div>
-
-
+    <div id="citations">
+      <a href="" style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </a>
+      <br>
+      <small id="year" style="margin-left: 12px;">2000, Lorem ipsum dolor sit amet consectetur</small>
+      <p style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque incidunt dolore quae aperiam iusto facere
+        sit molestias consequuntur explicabo blanditiis expedita, ipsa corporis temporibus officiis placeat, earum pariatur
+        similique!
+      </p>
+    </div>
+    <div id="citations">
+      <a href="" style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. </a>
+      <br>
+      <small id="year" style="margin-left: 12px;">2000, Lorem ipsum dolor sit amet consectetur</small>
+      <p style="margin-left: 12px;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Laboriosam cumque incidunt dolore quae aperiam iusto facere
+        sit molestias consequuntur explicabo blanditiis expedita, ipsa corporis temporibus officiis placeat, earum pariatur
+        similique!
+      </p>
+    </div>
   </div>
+
+  <!--Footer-->
+  <div class="footer-basic">
+    <footer>
+      <ul class="list-inline">
+        <li class="list-inline-item">
+          <a href="#">Home</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Services</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">About</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Terms</a>
+        </li>
+        <li class="list-inline-item">
+          <a href="#">Privacy Policy</a>
+        </li>
+      </ul>
+      <p class="copyright">Envo Scholar © 2018</p>
+    </footer>
+  </div>
+
 </body>
 
 </html>
