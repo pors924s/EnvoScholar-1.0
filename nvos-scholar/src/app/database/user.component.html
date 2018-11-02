@@ -1,0 +1,13 @@
+<div>
+  User {{uid}} is logged in.
+  <div *ngIf="user.isAdmin | async">
+    User also has ADMIN roles
+  </div>
+  <div>
+    <button>Logout</button>
+  </div>
+</div>
+<ng-template #login>
+  You need to login:
+  <button>Login</button>
+</ng-template>

@@ -11,6 +11,8 @@ import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
 import { environment } from "../environments/environment";
+import { AngularFireModule } from "angularfire2";
+import { UserComponent } from "./database/user.component";
 
 //Routes
 const routes: Routes = [
@@ -25,6 +27,10 @@ const routes: Routes = [
   {
     path: "article",
     component: ArticleinfoComponent
+  },
+  {
+    path: "login",
+    component: UserComponent
   },
   {
     /**
@@ -43,7 +49,8 @@ const routes: Routes = [
     HomepageComponent,
     DisplayresultsComponent,
     ArticleinfoComponent,
-    NavbarwithsearchComponent
+    NavbarwithsearchComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +58,15 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    AngularFireModule.initializeApp({
+      apiKey: "AIzaSyBzgXD1z-522yRtB-6doRmBRSBtwbyIBew",
+      authDomain: "nvos-scholar.firebaseapp.com",
+      databaseURL: "https://nvos-scholar.firebaseio.com",
+      projectId: "nvos-scholar",
+      storageBucket: "nvos-scholar.appspot.com",
+      messagingSenderId: "923631814596"
+    })
   ],
 
   providers: [],
