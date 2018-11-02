@@ -10,6 +10,12 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
+import { AngularFireModule } from "angularfire2";
+import { environment } from "../environments/environment";
+import { LoginComponent } from './login/login.component';
+import { EmailComponent } from './email/email.component';
+import { SignupComponent } from './signup/signup.component';
+import { MembersComponent } from './members/members.component';
 
 //Routes
 const routes: Routes = [
@@ -43,7 +49,11 @@ const routes: Routes = [
     HomepageComponent,
     DisplayresultsComponent,
     ArticleinfoComponent,
-    NavbarwithsearchComponent
+    NavbarwithsearchComponent,
+    LoginComponent,
+    EmailComponent,
+    SignupComponent,
+    MembersComponent
   ],
   imports: [
     BrowserModule,
@@ -51,7 +61,8 @@ const routes: Routes = [
     FormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
 
   providers: [],
