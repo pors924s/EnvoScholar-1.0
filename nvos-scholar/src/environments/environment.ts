@@ -5,12 +5,12 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBzgXD1z-522yRtB-6doRmBRSBtwbyIBew",
-    authDomain: "nvos-scholar.firebaseapp.com",
-    databaseURL: "https://nvos-scholar.firebaseio.com",
-    projectId: "nvos-scholar",
-    storageBucket: "nvos-scholar.appspot.com",
-    messagingSenderId: "923631814596"
+    apiKey: "AIzaSyC5e6fc7JGA0xv6hFHnwOTHPR4x0hKfmRA",
+    authDomain: "fiuenvoscholar.firebaseapp.com",
+    databaseURL: "https://fiuenvoscholar.firebaseio.com",
+    projectId: "fiuenvoscholar",
+    storageBucket: "fiuenvoscholar.appspot.com",
+    messagingSenderId: "518650414566"
   }
 };
 

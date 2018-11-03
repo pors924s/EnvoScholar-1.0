@@ -4,18 +4,12 @@ import { RouterModule, Routes } from "@angular/router";
 import { AppComponent } from "./app.component";
 import { HomepageComponent } from "./homepage/homepage/homepage.component";
 import { DisplayresultsComponent } from "./displayresults/displayresults.component";
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
-import { AngularFireModule } from "angularfire2";
-import { environment } from "../environments/environment";
-import { LoginComponent } from './login/login.component';
-import { EmailComponent } from './email/email.component';
-import { SignupComponent } from './signup/signup.component';
-import { MembersComponent } from './members/members.component';
 
 //Routes
 const routes: Routes = [
@@ -49,20 +43,16 @@ const routes: Routes = [
     HomepageComponent,
     DisplayresultsComponent,
     ArticleinfoComponent,
-    NavbarwithsearchComponent,
-    LoginComponent,
-    EmailComponent,
-    SignupComponent,
-    MembersComponent
+    NavbarwithsearchComponent
   ],
   imports: [
     BrowserModule,
     RouterModule.forRoot(routes),
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    OrderModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    OrderModule
   ],
 
   providers: [],
