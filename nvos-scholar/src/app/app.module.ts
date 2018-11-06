@@ -10,32 +10,14 @@ import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { NavbarwithsearchComponent } from "./navbarwithsearch/navbarwithsearch.component";
+import { UserComponent } from "./user/user.component";
+import { SignUpComponent } from "./user/sign-up/sign-up.component";
+import { UserService } from "./shared/user.service";
+import { UserProfileComponent } from "./user-profile/user-profile.component";
+import { SignInComponent } from "./user/sign-in/sign-in.component";
+import { appRoutes } from "./routes";
 
 //Routes
-const routes: Routes = [
-  {
-    path: "homepage",
-    component: HomepageComponent
-  },
-  {
-    path: "displayresults",
-    component: DisplayresultsComponent
-  },
-  {
-    path: "article",
-    component: ArticleinfoComponent
-  },
-
-  {
-    /**
-     * If a path is entered to the url and it is not defined here
-     * then it will default to 'homepage'
-     */
-    path: "",
-    redirectTo: "homepage",
-    pathMatch: "full"
-  }
-];
 
 @NgModule({
   declarations: [
@@ -43,11 +25,15 @@ const routes: Routes = [
     HomepageComponent,
     DisplayresultsComponent,
     ArticleinfoComponent,
-    NavbarwithsearchComponent
+    NavbarwithsearchComponent,
+    UserComponent,
+    SignUpComponent,
+    UserProfileComponent,
+    SignInComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -55,7 +41,7 @@ const routes: Routes = [
     OrderModule
   ],
 
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
