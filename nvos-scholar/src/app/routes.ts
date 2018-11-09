@@ -6,6 +6,8 @@ import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
 import { SignUpComponent } from "./user/sign-up/sign-up.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignInComponent } from "./user/sign-in/sign-in.component";
+import { AuthGuard } from "./auth/auth.guard";
+import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
 
 export const appRoutes: Routes = [
   {
@@ -21,6 +23,10 @@ export const appRoutes: Routes = [
     component: ArticleinfoComponent
   },
   {
+    path: "savedarticles",
+    component: SavedarticlesComponent
+  },
+  {
     path: "signup",
     component: UserComponent,
     children: [
@@ -32,7 +38,8 @@ export const appRoutes: Routes = [
   },
   {
     path: "userprofile",
-    component: UserProfileComponent
+    component: UserProfileComponent,
+    canActivate: [AuthGuard]
   },
   {
     path: "login",

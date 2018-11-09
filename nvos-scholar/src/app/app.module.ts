@@ -5,7 +5,7 @@ import { AppComponent } from "./app.component";
 import { HomepageComponent } from "./homepage/homepage/homepage.component";
 import { DisplayresultsComponent } from "./displayresults/displayresults.component";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgxPaginationModule } from "ngx-pagination";
 import { OrderModule } from "ngx-order-pipe";
 import { ArticleinfoComponent } from "./articleinfo/articleinfo.component";
@@ -16,6 +16,9 @@ import { UserService } from "./shared/user.service";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { appRoutes } from "./routes";
+import { AuthGuard } from "./auth/auth.guard";
+import { AuthInterceptor } from "./auth/auth.interceptor";
+import { SavedarticlesComponent } from './savedarticles/savedarticles.component';
 
 //Routes
 
@@ -29,7 +32,8 @@ import { appRoutes } from "./routes";
     UserComponent,
     SignUpComponent,
     UserProfileComponent,
-    SignInComponent
+    SignInComponent,
+    SavedarticlesComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +45,16 @@ import { appRoutes } from "./routes";
     OrderModule
   ],
 
-  providers: [UserService],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    AuthInterceptor,
+    AuthGuard,
+    UserService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

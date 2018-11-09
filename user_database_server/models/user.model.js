@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 var userSchema = new mongoose.Schema({
   fullName: {
@@ -16,7 +17,10 @@ var userSchema = new mongoose.Schema({
     required: "Password can't be empty",
     minlength: [4, "Password must be atleast 6 characters"]
   },
-  saltSecret: String
+  saltSecret: String,
+  articles: {
+    type: String
+  }
 });
 
 // Custom validation for email
@@ -35,5 +39,16 @@ userSchema.pre("save", function(next) {
     });
   });
 });
+
+//Methods
+userSchema.methods.verifyPassword = function(password) {
+  return bcrypt.compareSync(password, this.password);
+};
+
+userSchema.methods.generateJWT = function() {
+  return jwt.sign({ _id: this.id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXP
+  });
+};
 
 mongoose.model("User", userSchema);

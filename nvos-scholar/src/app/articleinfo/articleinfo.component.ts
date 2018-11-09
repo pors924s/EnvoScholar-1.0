@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { HttpClient } from "@angular/common/http";
+import { UserService } from "../shared/user.service";
+
 @Component({
   selector: "app-articleinfo",
   templateUrl: "./articleinfo.component.html",
@@ -16,7 +18,11 @@ export class ArticleinfoComponent implements OnInit {
   year: any;
   url: any;
   abstract: any;
-  constructor(private http: HttpClient, private route: ActivatedRoute) {}
+  constructor(
+    private http: HttpClient,
+    private route: ActivatedRoute,
+    private userService: UserService
+  ) {}
   ngOnInit() {
     var query: string = window.location.search.substring(1).split("=")[1];
     this.http
@@ -42,5 +48,9 @@ export class ArticleinfoComponent implements OnInit {
   //Click Article Website to open the link on a new page
   articleURL(url: string) {
     window.open(url, "_blank");
+  }
+
+  saveArticle(title: any) {
+    console.log(title);
   }
 }

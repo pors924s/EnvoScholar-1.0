@@ -11,7 +11,8 @@ export class UserService {
   selectedUser: User = {
     fullName: "",
     email: "",
-    password: ""
+    password: "",
+    articles: []
   };
 
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: "True" }) };
@@ -31,7 +32,8 @@ export class UserService {
   login(authCredentials) {
     return this.http.post(
       environment.apiBaseUrl + "/authenticate",
-      authCredentials
+      authCredentials,
+      this.noAuthHeader
     );
   }
 
@@ -63,7 +65,8 @@ export class UserService {
 
   isLoggedIn() {
     var userPayload = this.getUserPayload();
-    if (userPayload) return userPayload.exp > Date.now() / 1000;
-    else return false;
+    if (userPayload) {
+      return userPayload.exp > Date.now() / 1000;
+    } else return false;
   }
 }

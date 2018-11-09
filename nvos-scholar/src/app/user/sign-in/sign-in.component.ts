@@ -20,7 +20,11 @@ export class SignInComponent implements OnInit {
 
   serverErrorMessages: string;
 
-  ngOnInit() {}
+  ngOnInit() {
+    if (this.userService.isLoggedIn()) {
+      this.router.navigateByUrl("/userprofile");
+    }
+  }
 
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
