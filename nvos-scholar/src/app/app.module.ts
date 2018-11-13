@@ -18,9 +18,10 @@ import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { appRoutes } from "./routes";
 import { AuthGuard } from "./auth/auth.guard";
 import { AuthInterceptor } from "./auth/auth.interceptor";
-import { SavedarticlesComponent } from './savedarticles/savedarticles.component';
+import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
 
-//Routes
+import { JwSocialButtonsModule } from "jw-angular-social-buttons";
+import { SearchHistoryComponent } from './search-history/search-history.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { SavedarticlesComponent } from './savedarticles/savedarticles.component'
     SignUpComponent,
     UserProfileComponent,
     SignInComponent,
-    SavedarticlesComponent
+    SavedarticlesComponent,
+    SearchHistoryComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { SavedarticlesComponent } from './savedarticles/savedarticles.component'
     ReactiveFormsModule,
     HttpClientModule,
     NgxPaginationModule,
-    OrderModule
+    OrderModule,
+    JwSocialButtonsModule
   ],
 
   providers: [

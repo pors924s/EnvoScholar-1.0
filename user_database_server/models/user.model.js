@@ -18,9 +18,8 @@ var userSchema = new mongoose.Schema({
     minlength: [4, "Password must be atleast 6 characters"]
   },
   saltSecret: String,
-  articles: {
-    type: String
-  }
+  articles: Array,
+  search: Array
 });
 
 // Custom validation for email

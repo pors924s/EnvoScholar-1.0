@@ -12,7 +12,8 @@ export class UserService {
     fullName: "",
     email: "",
     password: "",
-    articles: []
+    articles: [],
+    search: []
   };
 
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: "True" }) };
@@ -21,6 +22,7 @@ export class UserService {
 
   //HttpMethods
 
+  //Creates user
   postUser(user: User) {
     return this.http.post(
       environment.apiBaseUrl + "/register",
@@ -29,6 +31,7 @@ export class UserService {
     );
   }
 
+  //Use login
   login(authCredentials) {
     return this.http.post(
       environment.apiBaseUrl + "/authenticate",
@@ -37,20 +40,34 @@ export class UserService {
     );
   }
 
+  //Returns user profile from MongoDB
   getUserProfile() {
     return this.http.get(environment.apiBaseUrl + "/userProfile");
   }
 
+  //Saves article to databae
+  addArticle(articleInfo: object) {
+    return this.http.post(environment.apiBaseUrl + "/savearticle", articleInfo);
+  }
+
+  //Saves search history to databse
+  saveSearch(search: string) {
+    return this.http.post(environment.apiBaseUrl + "/savesearch", search);
+  }
+
   //Helper Methods
 
+  //Sets login token
   setToken(token: string) {
     localStorage.setItem("token", token);
   }
 
+  //Creates login token
   getToken() {
     return localStorage.getItem("token");
   }
 
+  //Deletes login token
   deleteToken() {
     localStorage.removeItem("token");
   }
@@ -63,6 +80,7 @@ export class UserService {
     } else return null;
   }
 
+  //Checks if user is logged in
   isLoggedIn() {
     var userPayload = this.getUserPayload();
     if (userPayload) {

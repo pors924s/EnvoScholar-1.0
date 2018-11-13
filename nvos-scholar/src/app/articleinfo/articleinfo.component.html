@@ -112,11 +112,7 @@
     <!-- Article information -->
     <div *ngIf="response">
       <div id="info-background">
-        <div>
-          <!--
-            button id="follow" (click)="saveArticle(article_title)">Save</button
-          -->
-        </div>
+        <div></div>
         <div id="info">
           <h2 class="header">{{ article_title }}</h2>
           <small *ngFor="let author of authors" id="author"
@@ -125,28 +121,77 @@
           <small id="year">{{ year | slice: 0:10 }}</small>
           <p id="abstract">{{ abstract }}</p>
 
-          <!--
-            <button (click)="articleURL(url)" id="website">Article Website</button>
-            <button id="save">Save</button>
-            <button id="cite">Cite</button>
-          -->
+          <!-- Citation button with popup box -->
+          <div style="margin-bottom: 10px;">
+            <div id="popupbox" class="popupposition">
+              <div id="popupwrapper">
+                <div id="container">
+                  <h3>MLA</h3>
+                  <p>
+                    Casagrande, Daniel J., et al. "Sulfur in peat-forming
+                    systems of the Okefenokee Swamp and Florida Everglades:
+                    origins of sulfur in coal." Geochimica et Cosmochimica Acta
+                    41.1 (1977): 161-167.
+                  </p>
+                  <p>
+                    <a
+                      href="javascript:void(0)"
+                      (click)="toggle_cite('popupbox')"
+                      >Close</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+            <a href="{{url}}" target="_blank" class="subtasks">
+              <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF
+            </a>
+            <a
+              href="javascript:void(0)"
+              (click)="toggle_cite('popupbox')"
+              class="subtasks"
+            >
+              <i class="fa fa-quote-right"></i>&nbsp;Cite
+            </a>
+            <a
+              href="javascript:void(0)"
+              (click)="saveArticle(article_title, authors, year, abstract)"
+              class="subtasks"
+              tabindex="1"
+              >&nbsp;<i class="fa fa-save"></i>&nbsp;Save
+            </a>
 
-          <a href="{{url}}" target="_blank" id="subtasks">
-            <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF</a
-          >
-          <a
-            href="javascript:void(0)"
-            (click)="toggle_cite('popupbox')"
-            id="subtasks"
-          >
-            <i class="fa fa-quote-right"></i>&nbsp;Cite</a
-          >
-          <a
-            href="http://localhost:4200/savedarticles"
-            (click)="saveArticle(article_title)"
-            id="subtasks"
-            >&nbsp; <i class="fa fa-save"></i>&nbsp;Save</a
-          >
+            <div id="share" class="popupposition">
+              <div id="popupwrapper">
+                <div id="container">
+                  <div style="margin-bottom: 3px;">
+                    <fb-like url="{{url}}"></fb-like>
+                  </div>
+                  <div><google-plus url="{{url}}"></google-plus></div>
+                  <div><linkedin-share url="{{url}}"></linkedin-share></div>
+
+                  <div style="margin-bottom: 3px;">
+                    <pin-it url="{{url}}"></pin-it>
+                  </div>
+                  <tweet url="{{url}}"></tweet>
+
+                  <p>
+                    <a href="javascript:void(0)" (click)="share('share')"
+                      >Close</a
+                    >
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <a
+              href="javascript:void(0)"
+              (click)="share('share')"
+              class="subtasks"
+            >
+              <i class="fa fa-share-alt"></i>&nbsp;Share</a
+            >
+          </div>
         </div>
       </div>
 

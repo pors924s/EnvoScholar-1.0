@@ -83,15 +83,37 @@
   </div>
 </nav>
 <div *ngIf="userDetails" id="profile-body">
-  <button class="searchbutton submit">Edit Profile</button>
-
-  <button class="searchbutton submit" (click)="savedArticles(userDetails)">
-    Saved Articles
+  <button class="searchbutton submit" (click)="searchHistory()">
+    Search History
   </button>
+
+  <!--
+    button class="searchbutton submit" (click)="savedArticles(userDetails)">
+      Saved Articles
+    </button
+  -->
 
   <h2>
     {{ userDetails.fullName.split(" ")[0] }}
     {{ userDetails.fullName.split(" ")[1] }}'s Profile
   </h2>
-  {{ userDetails.articles }} article?
+  <br />
+
+  <div
+    style="margin-top: 10px; margin-left: 5px"
+    *ngFor="let article of userDetails.articles"
+  >
+    <a
+      id="title"
+      style="margin-top: 10px;"
+      href="http://localhost:4200/article?article_title={{ article.title }}"
+      >{{ article.title }}</a
+    >
+    <br />
+    <small *ngFor="let author of article.authors" id="author"
+      >{{ author.name }} -
+    </small>
+    <small id="year">{{ article.year | slice: 0:10 }}</small>
+    <p id="abstract">{{ article.abstract | slice: 0:200 }}...</p>
+  </div>
 </div>

@@ -8,6 +8,7 @@ import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
+import { SearchHistoryComponent } from "./search-history/search-history.component";
 
 export const appRoutes: Routes = [
   {
@@ -40,6 +41,10 @@ export const appRoutes: Routes = [
     path: "userprofile",
     component: UserProfileComponent,
     canActivate: [AuthGuard]
+  },
+  {
+    path: "searchhistory",
+    component: SearchHistoryComponent
   },
   {
     path: "login",

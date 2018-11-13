@@ -8,5 +8,7 @@ const jwtHelper = require("../config/jwtHelper");
 router.post("/register", ctrlUser.register);
 router.post("/authenticate", ctrlUser.authenticate);
 router.get("/userProfile", jwtHelper.verifyJwtToken, ctrlUser.userProfile);
+router.post("/savearticle", jwtHelper.verifyJwtToken, ctrlUser.saveArticle);
+router.post("/savesearch", jwtHelper.verifyJwtToken, ctrlUser.saveSearch);
 
 module.exports = router;

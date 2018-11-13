@@ -67,13 +67,18 @@
       >
         <div class="row" style="margin:0px;">
           <!-- Search -->
-          <form class="query-search-form">
+          <form
+            #saveSearchForm="ngForm"
+            (ngSubmit)="saveSearchForm.valid && saveSearch(saveSearchForm)"
+            class="query-search-form"
+          >
             <!-- Search Bar -->
             <div class="col">
               <input
                 ngModel
                 name="search"
                 #search="ngModel"
+                [(ngModel)]="userService.selectedUser.search"
                 class="form-control"
                 type="search"
                 placeholder="Search Peer Reviewed Articles"
@@ -89,12 +94,10 @@
                   type="submit"
                   value="Search"
                   id="search"
-                  routerLink="/displayresults"
-                  [queryParams]="{ search: search.value }"
-                  queryParamsHandling="merge"
                   class="searchbutton"
                   role="button"
                   style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px;"
+                  (click)="openSearchPage(saveSearchForm)"
                 />
               </div>
             </div>

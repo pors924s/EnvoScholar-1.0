@@ -15,7 +15,6 @@ export class UserProfileComponent implements OnInit {
     this.userService.getUserProfile().subscribe(
       res => {
         this.userDetails = res["user"];
-        console.log(this.userDetails.articles);
       },
       err => {}
     );
@@ -31,6 +30,14 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(["/login"]);
     } else {
       this.router.navigate(["/savedarticles"]);
+    }
+  }
+
+  searchHistory() {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(["/login"]);
+    } else {
+      this.router.navigate(["/searchhistory"]);
     }
   }
 }
