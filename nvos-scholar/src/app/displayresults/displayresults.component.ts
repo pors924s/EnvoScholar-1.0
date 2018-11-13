@@ -1,6 +1,10 @@
 import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, NavigationExtras } from "@angular/router";
+import * as $ from 'jquery';
+import { convertInjectableProviderToFactory } from "@angular/core/src/di/injectable";
+import { isUndefined, isNullOrUndefined } from "util";
+
 
 @Component({
   selector: "app-displayresults",
@@ -9,33 +13,89 @@ import { Router, NavigationExtras } from "@angular/router";
 })
 export class DisplayresultsComponent implements OnInit {
   response: any;
+  //list of articles after date filter in getDate()
+  editedResponse: any;
+  //articles sent to user on results page
+  finalResponse: any;
+  //list of articles after date filter in search()
+  filteredDate: any;
+  //saves articles before filters
+  originalResponse: any;
+  responseLength: number;
+  defaultMinYear: number = 1900;
+  defaultMaxYear: number = 2018;
+  x: number = 0;
+
+
   constructor(private http: HttpClient, private router: Router) {}
 
   ngOnInit() {
-    this.search();
+    this.search(0, null);
   }
+  numArticles: number = 100;
+  //====================BEGIN filter info via JSON file====================//
+  myParams = {
+    "query": {
+        "range" : {
+            "cover_date" : {
+                "gte": "2010-01-01T00:00:00.000Z", 
+                "lte": "2016-01-01T00:00:00.000Z" 
+            }
+        }
+    }
+  };
+  //========= cURL command that works=========//
+  /*curl -X GET "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search" -H 'Content-Type: application/json' -d'
+    {
+        "query": {
+            "range" : {
+                "cover_date" : {
+                    "gte": "2015-01-01T00:00:00.000Z", 
+                    "lte": "now"
+                }
+            }
+        }
+    }
+    '*/
+  dateEncoded = $.param(this.myParams);
+  dateDecoded = decodeURIComponent(this.dateEncoded);
+  //====================END filter info via JSON file====================//
 
+  
   /**
    * This function is called whenever a user types a search query in either the homepage
    * or the display results page. It will use an HTTP GET request to the JSON file containing
    * all the article information. The displayresults.component.html file will use interpolation
    * to show the results
    */
-
-  search() {
+  search(flag, filteredDate) {
     var query: string = window.location.search.substring(1).split("=")[1];
     this.http
       .get(
-        "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q=" +
-          query +
-          "&size=100"
+        "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q="+ query + "&" + /*this.dateEncoded +*/ "&size=" + this.numArticles
+        
       )
       .subscribe(response => {
         //Set this.response to the JSON file
-        this.response = response;
+        this.response = response; 
         //Set this.article_info to the JSON file to be sent to another component through the ArticleInformationService
-        console.log(response);
+        
+        //Keeps original response
+        if(this.x == 0){
+          this.originalResponse = this.response.hits.hits;
+          this.x++;
+        }
+        this.response.hits.hits = this.originalResponse;
+        if(flag == 0){
+          this.finalResponse = this.response.hits.hits;
+        }
       });
+      if(flag != 0){
+        this.finalResponse = filteredDate;
+        console.log(filteredDate);
+        console.log(this.responseLength);
+      }
+      
   }
 
   /**
@@ -70,18 +130,60 @@ export class DisplayresultsComponent implements OnInit {
     }
   }
 
-  getDate(year: number) {
-    var i: number;
-    var date: string[] = new Array(100);
-    for (i = 0; i < 100; i++) {
-      if (
-        this.response.hits.hits[i]._source.cover_date.includes(year) === true
-      ) {
-        date[i] = this.response.hits.hits[i]._source.cover_date;
+
+  //Filter by date range, specify min year and max year
+  getDate(minYear,maxYear) {
+    var i: number = 0;
+    var j: number = 0;
+    var z: number = 0;
+    var articleIndex: number[] = new Array(this.originalResponse.length);
+
+    if(minYear.isEmpty){
+      minYear = 1900;
+      console.log('why');
+    }
+    else if(maxYear.isEmpty){
+      maxYear = 2018;
+      console.log('Yes');
+    }
+    else if(minYear.isEmpty && maxYear.isEmpty){
+      minYear = 1900;
+      maxYear = 2018;
+    }
+    
+    
+    for (i = 0; i < this.originalResponse.length; i++) {
+      if (this.response.hits.hits[i]._source.cover_date.substr(0,4) >= minYear && this.response.hits.hits[i]._source.cover_date.substr(0,4) <= maxYear) {
+        articleIndex[z] = i;
+        z++;
+        //this.result[z] = this.response.hits.hits[i];
       }
     }
-    console.log(date);
+
+    var finalArticleIndex: number[] = new Array(z);
+    var editedResponse: any[] = new Array(z);
+    this.numArticles = z;
+    console.log(z);
+
+    //Creates new response with only articles within the date range
+    for(j = 0; j < z; j++){
+      //articleIndex has empty indices, new array fits all values exactly
+      finalArticleIndex[j] = articleIndex[j];
+      editedResponse[j] = this.response.hits.hits[finalArticleIndex[j]];
+
+    }
+
+    this.search(1, editedResponse);
+    console.log(minYear, maxYear);
+    console.log(maxYear);
+    
   }
+
+  
+  clearFilters(){
+    window.location.reload();
+  }
+
 
   /**
    * This function is called when a user clicks on an article link in display results. It sets the article index to the article_info to be called in the articleinfo

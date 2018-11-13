@@ -8,7 +8,6 @@
 
   <!--CSS and Bootstrap files needed for styling-->
   <link rel="stylesheet" href="../../../assets/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="../../../assets/fonts/font-awesome.min.css">
   <link rel="stylesheet" href="../../../assets/fonts/typicons.min.css">
   <link rel="stylesheet" href="../../../assets/css/Footer-Basic.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
@@ -18,50 +17,21 @@
 </head>
 
 <body>
-  <!--Navigation Bar-->
-  <nav class="navbar navbar-dark navbar-expand-md fixed-top" style="background-color:#081E3F;">
-    <div class="container">
-
-      <!--Envo Scholar Tab-->
-      <a class="navbar-brand" href="http://localhost:4200/" style="color:#fff; margin-right: 100px">Envo Scholar</a>
-
-      <!--Ontology Tab-->
-      <a class="navbar-brand" href="../src/ontology.html" style="color:#fff; margin-right: 100px">Ontology</a>
-
-      <button class="navbar-toggler" data-toggle="collapse" data-target="#navcol-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navcol-1">
-        <ul class="nav navbar-nav"></ul>
-        <form class="form-inline mr-auto" target="_self">
-          <div class="form-group">
-            <label style="color:#B6862C;" for="search-field">
-              <i class="fa fa-search"></i>
-            </label>
-            <!--Search Bar-->
-            <input ngModel name="search" #search="ngModel" class="form-control" value="{{search}}" type="search" placeholder="Search Peer Reviewed Articles"
-              id="search-field" style="background-color: #fff;">
-
-            <!--Submit Button-->
-            <input type="submit" value="Search" id="search" onclick="window.location.href='http://localhost:4200/displayresults?search=' + search[0].value"
-              class="searchbutton" role="button" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px;">
-          </div>
-        </form>
-
-        <!--Login Button-->
-        <li class="nav-item" role="presentation">
-          <a class="nav-link active" href="http://localhost:4200/login" style="color:#fff;">
-            <i class="fa fa-pencil"></i>&nbsp; Account</a>
-        </li>
-      </div>
-    </div>
-  </nav>
+  <!--Navbar Component-->
+  <app-navbarwithsearch></app-navbarwithsearch>
 
   <!--Concepts-->
-  <div class="container">
+  <div class="container concepts">
     <div id="concepts">
+        <div class="jumbotron flex-grow-1 editResults" style="background-color:rgb(0, 29, 109);">
+            <button (click)="sort('_source.cover_date')">Recency</button>
+            <button (click)="sort('_score')">Relevance</button>
+        
+            <input ngModel name="minYear" #minYear="ngModel" type="minYear" placeholder="From">
+            <input ngModel name="maxYear" #maxYear="ngModel" type="maxYear" placeholder="To">
+            <input type="button" value="Filter Date Range" (click)="getDate(minYear.viewModel, maxYear.viewModel)">
+            <input type="button" value="ClearFilters" (click)="clearFilters()">
+        </div>
       <div class="jumbotron flex-grow-1 justify-content-between" class="text-center" style="background-color:#B6862C;">
 
         <div *ngIf="response">
@@ -75,43 +45,16 @@
 
       </div>
     </div>
-
-    <select>
-      <option>Sort</option>
-      <option (click)="sort('_score')">Relevance</option>
-      <option (click)="sort('_source.cover_date')">Recency</option>
-    </select>
-
-    <select>
-      <option>Filter</option>
-      <option (click)="getDate(1999)">1999</option>
-      <option (click)="getDate(2000)">2000</option>
-      <option (click)="getDate(2001)">2001</option>
-      <option (click)="getDate(2002)">2002</option>
-      <option (click)="getDate(2003)">2003</option>
-      <option (click)="getDate(2004)">2004</option>
-      <option (click)="getDate(2005)">2005</option>
-      <option (click)="getDate(2006)">2006</option>
-      <option (click)="getDate(2007)">2007</option>
-      <option (click)="getDate(2008)">2008</option>
-      <option (click)="getDate(2009)">2009</option>
-      <option (click)="getDate(2010)">2010</option>
-      <option (click)="getDate(2011)">2011</option>
-      <option (click)="getDate(2012)">2012</option>
-      <option (click)="getDate(2013)">2013</option>
-      <option (click)="getDate(2014)">2014</option>
-      <option (click)="getDate(2015)">2015</option>
-      <option (click)="getDate(2016)">2016</option>
-      <option (click)="getDate(2017)">2017</option>
-      <option (click)="getDate(2018)">2018</option>
-    </select>
+    
+    
+      <p>Flitering Between {{minYear.viewModel}} TO {{maxYear.viewModel}}</p>
 
     <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
 
         <div *ngIf="response">
-          <div *ngFor="let hit of response.hits.hits | orderBy: key : true | paginate: { itemsPerPage:6, currentPage: p} let i = index">
+          <div *ngFor="let hit of finalResponse | orderBy: key : true | paginate: { itemsPerPage:10, currentPage: p} let i = index">
             <div style="background-color: rgba(0,0,0,.025)">
               <!--Article title with link to URL-->
               <a routerLink="/article" (click)="navigate(i)" style="font-size: 20px; color: rgb(0,0,200);">{{hit._source.title}}</a>
@@ -150,7 +93,7 @@
             </div>
           </div>
           <!--Event handler for pagination-->
-          <pagination-controls (pageChange)="p =$event" onclick="window.scrollTo(0, 0)"></pagination-controls>
+          <pagination-controls (pageChange)="p =$event" onclick="window.scrollTo(0,0)"></pagination-controls>
         </div>
       </div>
     </div>
