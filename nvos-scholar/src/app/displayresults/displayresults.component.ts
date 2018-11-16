@@ -142,12 +142,15 @@ export class DisplayresultsComponent implements OnInit {
   website(specifyWebsite){
     if(specifyWebsite == 0){
       if(confirm("You are about to be directed to academic.microsoft.com."))
-        window.open('https://academic.microsoft.com/#/search?iq=%40' + this.query + '%40&q=' + this.query + '&filters=&from=0&sort=0', '_blank');
+        window.open('https://academic.microsoft.com/#/search?iq=%40' + this.query + '%40&q=' + this.query + '&filters=Y>%3D' + this.defaultMinYear + '%2CY<%3D' + this.defaultMaxYear + '&from=0&sort=0', '_blank');
     }
 
     else{
       if(confirm("You are about to be directed to semanticscholar.com."))
-        window.open('https://www.semanticscholar.org/search?q=' + this.query +'&sort=relevance', '_blank');
+        if(this.filter)
+          window.open('https://www.semanticscholar.org/search?year%5B0%5D=' + this.defaultMinYear + '&year%5B1%5D=' + this.defaultMaxYear + '&q=' + this.query +'&sort=relevance', '_blank');
+        else
+          window.open('https://www.semanticscholar.org/search?q=' + this.query +'&sort=relevance', '_blank');
     }
   }
 
@@ -208,6 +211,8 @@ export class DisplayresultsComponent implements OnInit {
       this.checkRange(minYear);
       this.checkRange(maxYear);
     }
+    this.defaultMinYear = minYear;
+    this.defaultMaxYear = maxYear;
     
     
     
