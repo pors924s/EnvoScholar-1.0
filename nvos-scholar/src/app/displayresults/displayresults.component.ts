@@ -2,13 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, NavigationExtras } from "@angular/router";
 import * as $ from "jquery";
-<<<<<<< HEAD
-import { convertInjectableProviderToFactory } from "@angular/core/src/di/injectable";
-import { isUndefined, isNullOrUndefined } from "util";
-=======
->>>>>>> 72f2d88eb1c7b2bb0496c311f42e3f2330e28538
 import { UserService } from "../shared/user.service";
-
 
 @Component({
   selector: "app-displayresults",
@@ -36,12 +30,11 @@ export class DisplayresultsComponent implements OnInit {
   specifyWebsite: number;
   userDetails;
 
-
-
-
-  constructor(private http: HttpClient, private router: Router, private userService: UserService) {}
-
-
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
   //=======================WHEN PAGE LOADS=======================//
   ngOnInit() {
@@ -64,16 +57,15 @@ export class DisplayresultsComponent implements OnInit {
     //this.academicSearch();
   }
 
-
   //====================BEGIN filter info via JSON file====================//
   myParams = {
-    "query": {
-        "range" : {
-            "cover_date" : {
-                "gte": "2010-01-01T00:00:00.000Z", 
-                "lte": "2016-01-01T00:00:00.000Z" 
-            }
+    query: {
+      range: {
+        cover_date: {
+          gte: "2010-01-01T00:00:00.000Z",
+          lte: "2016-01-01T00:00:00.000Z"
         }
+      }
     }
   };
   //========= cURL command that works=========//
@@ -93,8 +85,6 @@ export class DisplayresultsComponent implements OnInit {
   dateDecoded = decodeURIComponent(this.dateEncoded);
   //====================END filter info via JSON file====================//
 
-
-
   //========================PULL SEARCH RESULTS FROM DATABASE========================//
   /**
    * This function is called whenever a user types a search query in either the homepage
@@ -105,8 +95,11 @@ export class DisplayresultsComponent implements OnInit {
   search(flag, filteredDate) {
     this.http
       .get(
-        "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q="+ this.query + "&" + /*this.dateEncoded +*/ "&size=" + this.numArticles
-        
+        "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q=" +
+          this.query +
+          "&" +
+          /*this.dateEncoded +*/ "&size=" +
+          this.numArticles
       )
       .subscribe(response => {
         //Set this.response to the JSON file
@@ -123,10 +116,9 @@ export class DisplayresultsComponent implements OnInit {
           this.finalResponse = this.response.hits.hits;
         }
       });
-      if(flag != 0){
-        this.finalResponse = filteredDate;
-      }
-      
+    if (flag != 0) {
+      this.finalResponse = filteredDate;
+    }
   }
   /*
   academicSearch() {
@@ -144,14 +136,23 @@ export class DisplayresultsComponent implements OnInit {
       
   }*/
 
-  website(specifyWebsite){
-    alert("You are about to be directed to a different webpage.")
-    if(specifyWebsite == 0)
-      return "https://academic.microsoft.com/#/search?iq=%40" + this.query + "%40&q=" + this.query + "&filters=&from=0&sort=0";
+  website(specifyWebsite) {
+    alert("You are about to be directed to a different webpage.");
+    if (specifyWebsite == 0)
+      return (
+        "https://academic.microsoft.com/#/search?iq=%40" +
+        this.query +
+        "%40&q=" +
+        this.query +
+        "&filters=&from=0&sort=0"
+      );
     else
-      return "https://www.semanticscholar.org/search?q=" + this.query + "&sort=relevance";
+      return (
+        "https://www.semanticscholar.org/search?q=" +
+        this.query +
+        "&sort=relevance"
+      );
   }
-
 
   //========================CONCEPTS========================//
   /**
@@ -164,7 +165,6 @@ export class DisplayresultsComponent implements OnInit {
       "http://localhost:4200/displayresults?search=" +
       this.response.hits.hits[index]._source.keywords[0].keyword;
   }
-
 
   //====================SORT===================//
   //set default
@@ -195,25 +195,23 @@ export class DisplayresultsComponent implements OnInit {
     var z: number = 0;
     var articleIndex: number[] = new Array(this.originalResponse.length);
 
-    if(minYear == '' && maxYear == ''){
+    if (minYear == "" && maxYear == "") {
       minYear = 1900;
       maxYear = 2018;
-    }
-    else if(minYear == ''){
+    } else if (minYear == "") {
       minYear = 1900;
-    }
-    else if(maxYear == ''){
+    } else if (maxYear == "") {
       maxYear = 2018;
-    }
-    else{
+    } else {
       this.checkRange(minYear);
       this.checkRange(maxYear);
     }
-    
-    
-    
+
     for (i = 0; i < this.originalResponse.length; i++) {
-      if (this.response.hits.hits[i]._source.cover_date.substr(0,4) >= minYear && this.response.hits.hits[i]._source.cover_date.substr(0,4) <= maxYear) {
+      if (
+        this.response.hits.hits[i]._source.cover_date.substr(0, 4) >= minYear &&
+        this.response.hits.hits[i]._source.cover_date.substr(0, 4) <= maxYear
+      ) {
         articleIndex[z] = i;
         z++;
       }
@@ -229,26 +227,29 @@ export class DisplayresultsComponent implements OnInit {
       finalArticleIndex[j] = articleIndex[j];
       editedResponse[j] = this.response.hits.hits[finalArticleIndex[j]];
     }
-    if(editedResponse.length == 0){
-      alert("No results for date range: " + minYear + " to " + maxYear + ".\nPlease Specify a different range." );
-    }
-    else{
+    if (editedResponse.length == 0) {
+      alert(
+        "No results for date range: " +
+          minYear +
+          " to " +
+          maxYear +
+          ".\nPlease Specify a different range."
+      );
+    } else {
       this.search(1, editedResponse);
       this.filter = true;
     }
-
-    
   }
 
-  checkRange(year){
-    if((year < 1900 || year > 2018) && year != '' && year != null){
+  checkRange(year) {
+    if ((year < 1900 || year > 2018) && year != "" && year != null) {
       alert("Year: '" + year + "' is out of range");
     }
   }
 
   //==================CLEAR FILTER==================//
-  clearFilters(){
-    this.getDate(1900,2018);
+  clearFilters() {
+    this.getDate(1900, 2018);
   }
 
   //=======================ARTICLE=======================//
@@ -315,7 +316,7 @@ export class DisplayresultsComponent implements OnInit {
     }
   }
   //============TEST TO CONSOLE============//
-  toConsole(){
-    console.log('You done testedededed it');
+  toConsole() {
+    console.log("You done testedededed it");
   }
 }
