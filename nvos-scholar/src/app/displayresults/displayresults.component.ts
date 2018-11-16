@@ -4,7 +4,6 @@ import { Router, NavigationExtras } from "@angular/router";
 import * as $ from "jquery";
 import { convertInjectableProviderToFactory } from "@angular/core/src/di/injectable";
 import { isUndefined, isNullOrUndefined } from "util";
-import { NgForm } from "@angular/forms";
 import { UserService } from "../shared/user.service";
 
 @Component({
