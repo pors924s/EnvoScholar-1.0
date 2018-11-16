@@ -27,10 +27,13 @@
             <button (click)="sort('_source.cover_date')">Recency</button>
             <button (click)="sort('_score')">Relevance</button>
         
-            <input ngModel name="minYear" #minYear="ngModel" type="minYear" placeholder="From">
-            <input ngModel name="maxYear" #maxYear="ngModel" type="maxYear" placeholder="To">
+            <input ngModel name="minYear" #minYear="ngModel" type="number" (focusout)="checkRange(minYear.viewModel)" placeholder="From">
+            <input ngModel name="maxYear" #maxYear="ngModel" type="number" (focusout)="checkRange(maxYear.viewModel)" placeholder="To">
             <input type="button" value="Filter Date Range" (click)="getDate(minYear.viewModel, maxYear.viewModel)">
-            <input type="button" value="ClearFilters" (click)="clearFilters()">
+            <div *ngIf ="filter">
+              <input type="button" value="ClearFilters" (click)="clearFilters()">
+            </div>
+            
         </div>
       <div class="jumbotron flex-grow-1 justify-content-between" class="text-center" style="background-color:#B6862C;">
 
@@ -46,9 +49,12 @@
       </div>
     </div>
     
-    
-      <p>Flitering Between {{minYear.viewModel}} TO {{maxYear.viewModel}}</p>
-
+    <div style="margin-bottom: 10px;">
+      <a href="{{website(0)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Microsoft Academic</a>
+      <a href="{{website(1)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Semantic Scholar</a>
+    </div>
     <!--Article results-->
     <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
       <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
