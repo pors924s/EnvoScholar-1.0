@@ -13,18 +13,6 @@ export class HomepageComponent implements OnInit {
   constructor(private userService: UserService) {}
   ngOnInit() {}
 
-  saveSearch(form: NgForm) {
-    if (this.userService.isLoggedIn()) {
-      this.userService.getUserProfile().subscribe(
-        res => {
-          this.userDetails = res["user"];
-          this.userService.saveSearch(form.value).subscribe();
-        },
-        err => {}
-      );
-    }
-  }
-
   openSearchPage(form: NgForm) {
     window.location.href =
       "http://localhost:4200/displayresults?search=" + form.value.search;

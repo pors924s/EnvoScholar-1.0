@@ -68,9 +68,8 @@
           ngModel
           name="minYear"
           #minYear="ngModel"
-          type="number"
+          type="minYear"
           placeholder="From"
-          (focusout)="checkRange(minYear.viewModel)"
           style="margin-right: 10px"
         />
         <input
@@ -78,21 +77,34 @@
           ngModel
           name="maxYear"
           #maxYear="ngModel"
-          type="number"
+          type="maxYear"
           placeholder="To"
-          (focusout)="checkRange(maxYear.viewModel)"
         />
         <div>
-          <div *ngIf="filter">
-            <input
-              class="searchbutton filter-button"
-              type="button"
-              value="ClearFilters"
-              (click)="clearFilters()"
-              style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px; float:right"
-            />
-          </div>
+          <input
+            class="searchbutton filter-button"
+            type="button"
+            value="ClearFilters"
+            (click)="clearFilters()"
+            style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px; float:right"
+          />
 
+<<<<<<< HEAD
+  <!--Concepts-->
+  <div class="container concepts">
+    <div id="concepts">
+        <div class="jumbotron flex-grow-1 editResults" style="background-color:rgb(0, 29, 109);">
+            <button (click)="sort('_source.cover_date')">Recency</button>
+            <button (click)="sort('_score')">Relevance</button>
+        
+            <input ngModel name="minYear" #minYear="ngModel" type="number" (focusout)="checkRange(minYear.viewModel)" placeholder="From">
+            <input ngModel name="maxYear" #maxYear="ngModel" type="number" (focusout)="checkRange(maxYear.viewModel)" placeholder="To">
+            <input type="button" value="Filter Date Range" (click)="getDate(minYear.viewModel, maxYear.viewModel)">
+            <div *ngIf ="filter">
+              <input type="button" value="ClearFilters" (click)="clearFilters()">
+            </div>
+            
+=======
           <input
             class="searchbutton filter-button"
             type="button"
@@ -100,6 +112,7 @@
             (click)="getDate(minYear.viewModel, maxYear.viewModel)"
             style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
           />
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
         </div>
 
         <h4>Sort</h4>
@@ -121,6 +134,19 @@
           </button>
         </div>
       </div>
+<<<<<<< HEAD
+    </div>
+    
+    <div style="margin-bottom: 10px;">
+      <a href="{{website(0)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Microsoft Academic</a>
+      <a href="{{website(1)}}" target="_blank" id="subtasks">
+        <i class="fa fa-file-text-o"></i>&nbsp;View Results In Semantic Scholar</a>
+    </div>
+    <!--Article results-->
+    <div class="results" style="border-bottom:#e2e2e2 solid; margin-top: 10px;">
+      <div class="jumbotron" style="color:#222222;background-color:#ffffff;">
+=======
 
       <!-- Article results -->
       <div
@@ -168,6 +194,7 @@
                 <p style="padding-left: 5px">
                   {{ hit._source.abstract | slice: 0:200 }}...
                 </p>
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
 
                 <!-- Citation button with popup box -->
                 <div style="margin-bottom: 10px;">
@@ -273,32 +300,21 @@
       </div>
     </div>
 
-  <!--Footer-->
-  <div class="footer-basic">
-    <footer>
-      <ul class="list-inline">
-        <li class="list-inline-item">
-          <a href="#">Home</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Services</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">About</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Terms</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Privacy Policy</a>
-        </li>
-      </ul>
-      <p class="copyright">Envo Scholar © 2018</p>
-    </footer>
-  </div>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/js/bs-animation.js"></script>
-</body>
-
+    <!-- Footer -->
+    <div class="footer-basic">
+      <footer>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Home</a></li>
+          <li class="list-inline-item"><a href="#">Services</a></li>
+          <li class="list-inline-item"><a href="#">About</a></li>
+          <li class="list-inline-item"><a href="#">Terms</a></li>
+          <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Envo Scholar © 2018</p>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+  </body>
 </html>

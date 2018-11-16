@@ -69,7 +69,7 @@
           <!-- Search -->
           <form
             #saveSearchForm="ngForm"
-            (ngSubmit)="saveSearchForm.valid && saveSearch(saveSearchForm)"
+            (ngSubmit)="openSearchPage(saveSearchForm)"
             class="query-search-form"
           >
             <!-- Search Bar -->
@@ -97,7 +97,6 @@
                   class="searchbutton"
                   role="button"
                   style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px;"
-                  (click)="openSearchPage(saveSearchForm)"
                 />
               </div>
             </div>

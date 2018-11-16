@@ -19,7 +19,8 @@ var userSchema = new mongoose.Schema({
   },
   saltSecret: String,
   articles: Array,
-  search: Array
+  search: Array,
+  click: Array
 });
 
 // Custom validation for email

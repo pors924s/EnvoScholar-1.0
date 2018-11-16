@@ -2,8 +2,10 @@ import { Component, OnInit } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Router, NavigationExtras } from "@angular/router";
 import * as $ from "jquery";
+import { convertInjectableProviderToFactory } from "@angular/core/src/di/injectable";
+import { isUndefined, isNullOrUndefined } from "util";
+import { NgForm } from "@angular/forms";
 import { UserService } from "../shared/user.service";
-
 
 @Component({
   selector: "app-displayresults",
@@ -25,16 +27,22 @@ export class DisplayresultsComponent implements OnInit {
   defaultMinYear: number = 1900;
   defaultMaxYear: number = 2018;
   x: number = 0;
+<<<<<<< HEAD
   numArticles: number = 100;
   filter: boolean = false;
   query: string = window.location.search.substring(1).split("=")[1];
   specifyWebsite: number;
+
+
+=======
   userDetails;
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
 
-
-
-
-  constructor(private http: HttpClient, private router: Router, private userService: UserService) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    private userService: UserService
+  ) {}
 
 
 
@@ -62,13 +70,13 @@ export class DisplayresultsComponent implements OnInit {
 
   //====================BEGIN filter info via JSON file====================//
   myParams = {
-    "query": {
-        "range" : {
-            "cover_date" : {
-                "gte": "2010-01-01T00:00:00.000Z", 
-                "lte": "2016-01-01T00:00:00.000Z" 
-            }
+    query: {
+      range: {
+        cover_date: {
+          gte: "2010-01-01T00:00:00.000Z",
+          lte: "2016-01-01T00:00:00.000Z"
         }
+      }
     }
   };
   //========= cURL command that works=========//
@@ -88,9 +96,12 @@ export class DisplayresultsComponent implements OnInit {
   dateDecoded = decodeURIComponent(this.dateEncoded);
   //====================END filter info via JSON file====================//
 
+<<<<<<< HEAD
 
 
   //========================PULL SEARCH RESULTS FROM DATABASE========================//
+=======
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
   /**
    * This function is called whenever a user types a search query in either the homepage
    * or the display results page. It will use an HTTP GET request to the JSON file containing
@@ -100,8 +111,16 @@ export class DisplayresultsComponent implements OnInit {
   search(flag, filteredDate) {
     this.http
       .get(
+<<<<<<< HEAD
         "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q="+ this.query + "&" + /*this.dateEncoded +*/ "&size=" + this.numArticles
         
+=======
+        "http://crest-cache-01.cs.fiu.edu:81/articles/article/_search?q=" +
+          query +
+          "&" +
+          /*this.dateEncoded +*/ "&size=" +
+          this.numArticles
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
       )
       .subscribe(response => {
         //Set this.response to the JSON file
@@ -118,10 +137,18 @@ export class DisplayresultsComponent implements OnInit {
           this.finalResponse = this.response.hits.hits;
         }
       });
+<<<<<<< HEAD
       if(flag != 0){
         this.finalResponse = filteredDate;
       }
       
+=======
+    if (flag != 0) {
+      this.finalResponse = filteredDate;
+      console.log(filteredDate);
+      console.log(this.responseLength);
+    }
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
   }
   /*
   academicSearch() {
@@ -182,7 +209,10 @@ export class DisplayresultsComponent implements OnInit {
     }
   }
 
+<<<<<<< HEAD
   //=================DATE FILTER=================//
+=======
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
   //Filter by date range, specify min year and max year
   getDate(minYear, maxYear) {
     var i: number = 0;
@@ -190,16 +220,27 @@ export class DisplayresultsComponent implements OnInit {
     var z: number = 0;
     var articleIndex: number[] = new Array(this.originalResponse.length);
 
+<<<<<<< HEAD
     if(minYear == '' && maxYear == ''){
       minYear = 1900;
       maxYear = 2018;
     }
     else if(minYear == ''){
+=======
+    if (minYear.isEmpty) {
+      minYear = 1900;
+      console.log("why");
+    } else if (maxYear.isEmpty) {
+      maxYear = 2018;
+      console.log("Yes");
+    } else if (minYear.isEmpty && maxYear.isEmpty) {
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
       minYear = 1900;
     }
     else if(maxYear == ''){
       maxYear = 2018;
     }
+<<<<<<< HEAD
     else{
       this.checkRange(minYear);
       this.checkRange(maxYear);
@@ -207,8 +248,14 @@ export class DisplayresultsComponent implements OnInit {
     
     
     
+=======
+
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
     for (i = 0; i < this.originalResponse.length; i++) {
-      if (this.response.hits.hits[i]._source.cover_date.substr(0,4) >= minYear && this.response.hits.hits[i]._source.cover_date.substr(0,4) <= maxYear) {
+      if (
+        this.response.hits.hits[i]._source.cover_date.substr(0, 4) >= minYear &&
+        this.response.hits.hits[i]._source.cover_date.substr(0, 4) <= maxYear
+      ) {
         articleIndex[z] = i;
         z++;
       }
@@ -232,6 +279,7 @@ export class DisplayresultsComponent implements OnInit {
       this.filter = true;
     }
 
+<<<<<<< HEAD
     
   }
 
@@ -247,6 +295,17 @@ export class DisplayresultsComponent implements OnInit {
   }
 
   //=======================ARTICLE=======================//
+=======
+    this.search(1, editedResponse);
+    console.log(minYear, maxYear);
+    console.log(maxYear);
+  }
+
+  clearFilters() {
+    window.location.reload();
+  }
+
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
   /**
    * This function is called when a user clicks on an article link in display results. It sets the article index to the article_info to be called in the articleinfo
    */
@@ -277,6 +336,11 @@ export class DisplayresultsComponent implements OnInit {
     };
     this.router.navigate(["article"], navigationExtras);
   }
+<<<<<<< HEAD
+  //============TEST TO CONSOLE============//
+  toConsole(){
+    console.log('You done testedededed it');
+=======
 
   //Click Article Website to open the link on a new page
   articleURL(url: string) {
@@ -308,9 +372,8 @@ export class DisplayresultsComponent implements OnInit {
     } else {
       e.style.display = "block";
     }
-  }
-  //============TEST TO CONSOLE============//
-  toConsole(){
-    console.log('You done testedededed it');
+>>>>>>> a7ab333818c2d6d5245cdf361dd986a51ea5b9a9
   }
 }
+
+

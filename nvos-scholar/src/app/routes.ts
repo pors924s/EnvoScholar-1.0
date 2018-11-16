@@ -9,6 +9,7 @@ import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
 import { SearchHistoryComponent } from "./search-history/search-history.component";
+import { ClickHistoryComponent } from "./click-history/click-history.component";
 
 export const appRoutes: Routes = [
   {
@@ -45,6 +46,10 @@ export const appRoutes: Routes = [
   {
     path: "searchhistory",
     component: SearchHistoryComponent
+  },
+  {
+    path: "clickhistory",
+    component: ClickHistoryComponent
   },
   {
     path: "login",

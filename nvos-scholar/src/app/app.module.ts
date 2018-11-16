@@ -22,6 +22,7 @@ import { SavedarticlesComponent } from "./savedarticles/savedarticles.component"
 
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
 import { SearchHistoryComponent } from './search-history/search-history.component';
+import { ClickHistoryComponent } from './click-history/click-history.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { SearchHistoryComponent } from './search-history/search-history.componen
     UserProfileComponent,
     SignInComponent,
     SavedarticlesComponent,
-    SearchHistoryComponent
+    SearchHistoryComponent,
+    ClickHistoryComponent
   ],
   imports: [
     BrowserModule,

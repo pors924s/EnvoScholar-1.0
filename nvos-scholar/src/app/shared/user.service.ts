@@ -13,7 +13,8 @@ export class UserService {
     email: "",
     password: "",
     articles: [],
-    search: []
+    search: [],
+    click: []
   };
 
   noAuthHeader = { headers: new HttpHeaders({ NoAuth: "True" }) };
@@ -50,8 +51,12 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl + "/savearticle", articleInfo);
   }
 
+  addClick(articleInfo: object) {
+    return this.http.post(environment.apiBaseUrl + "/saveclick", articleInfo);
+  }
+
   //Saves search history to databse
-  saveSearch(search: string) {
+  saveSearch(search: object) {
     return this.http.post(environment.apiBaseUrl + "/savesearch", search);
   }
 
