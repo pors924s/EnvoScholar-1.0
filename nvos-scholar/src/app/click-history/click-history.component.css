@@ -13,6 +13,7 @@
 h2 {
   color: #b6862c;
   margin-left: 10px;
+  text-decoration: underline;
 }
 
 #email {
@@ -28,4 +29,14 @@ h2 {
   margin-left: 10px;
   margin-bottom: 10px;
   margin-right: 10px;
+}
+
+#title {
+  font-size: 20px;
+  color: rgb(0, 0, 200);
+}
+
+#author,
+#year {
+  color: green;
 }

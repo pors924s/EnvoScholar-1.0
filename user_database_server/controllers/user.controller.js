@@ -11,6 +11,7 @@ module.exports.register = (req, res, next) => {
   user.password = req.body.password;
   user.articles = [];
   user.search = [];
+  user.click = [];
   user.save((err, doc) => {
     if (!err) {
       res.send(doc);
@@ -42,7 +43,7 @@ module.exports.userProfile = (req, res, next) => {
     } else {
       return res.status(200).json({
         status: true,
-        user: _.pick(user, ["fullName", "email", "articles", "search"])
+        user: _.pick(user, ["fullName", "email", "articles", "search", "click"])
       });
     }
   });
@@ -81,6 +82,25 @@ module.exports.saveSearch = (req, res, next) => {
         res.send("Error saving search history");
       } else {
         res.json(savedSearch);
+      }
+    }
+  );
+};
+
+module.exports.saveClick = (req, res, next) => {
+  User.findOneAndUpdate(
+    { _id: req._id },
+    {
+      $addToSet: { click: req.body.click }
+    },
+    {
+      new: true
+    },
+    function(err, savedClick) {
+      if (err) {
+        res.send("Error saving search history");
+      } else {
+        res.json(savedClick);
       }
     }
   );

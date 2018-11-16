@@ -88,15 +88,24 @@
 
   <h2>
     {{ userDetails.fullName.split(" ")[0] }}
-    {{ userDetails.fullName.split(" ")[1] }}'s Search History
+    {{ userDetails.fullName.split(" ")[1] }}'s Click History
   </h2>
   <br />
-  <div style="margin-top: 10px;" *ngFor="let search of userDetails.search">
+  <div
+    style="margin-top: 10px; margin-left: 5px"
+    *ngFor="let click of userDetails.click"
+  >
     <a
-      style="margin-top: 10px; margin-left: 5px;font-size: 20px;
-      color: rgb(0, 0, 200);"
-      href="http://localhost:4200/displayresults?search={{ search.spacedQuery }}"
-      >{{ search.spacedQuery }}</a
+      id="title"
+      style="margin-top: 10px;"
+      href="http://localhost:4200/article?article_title={{ click.title }}"
+      >{{ click.title }}</a
     >
+    <br />
+    <small *ngFor="let author of click.authors" id="author"
+      >{{ author.name }} -
+    </small>
+    <small id="year">{{ click.year | slice: 0:10 }}</small>
+    <p id="abstract">{{ click.abstract | slice: 0:200 }}...</p>
   </div>
 </div>

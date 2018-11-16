@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
-
+import { Router } from "@angular/router";
 import { UserService } from "../../shared/user.service";
 
 @Component({
@@ -13,7 +13,7 @@ export class SignUpComponent implements OnInit {
   showSucessMessage: boolean;
   serverErrorMessages: string;
 
-  constructor(private userService: UserService) {}
+  constructor(private router: Router, private userService: UserService) {}
 
   ngOnInit() {}
 
@@ -40,7 +40,8 @@ export class SignUpComponent implements OnInit {
       email: "",
       password: "",
       articles: [],
-      search: []
+      search: [],
+      click: []
     };
     form.resetForm();
     this.serverErrorMessages = "";

@@ -27,7 +27,8 @@ export class ArticleinfoComponent implements OnInit {
     email: "",
     password: "",
     articles: [],
-    search: []
+    search: [],
+    click: []
   };
   constructor(
     private http: HttpClient,
@@ -44,7 +45,6 @@ export class ArticleinfoComponent implements OnInit {
         //Set this.response to the JSON file
         this.response = response;
         //Set this.article_info to the JSON file to be sent to another component through the ArticleInformationService
-        console.log(response);
         this.article = this.response.hits.hits[0];
         this.article_title = this.article._source.title;
         this.authors = this.article._source.authors;

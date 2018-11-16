@@ -87,15 +87,13 @@
     Search History
   </button>
 
-  <!--
-    button class="searchbutton submit" (click)="savedArticles(userDetails)">
-      Saved Articles
-    </button
-  -->
+  <button class="searchbutton submit" (click)="clickHistory()">
+    Click History
+  </button>
 
   <h2>
     {{ userDetails.fullName.split(" ")[0] }}
-    {{ userDetails.fullName.split(" ")[1] }}'s Profile
+    {{ userDetails.fullName.split(" ")[1] }}'s Saved Articles
   </h2>
   <br />
 

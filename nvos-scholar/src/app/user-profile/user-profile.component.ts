@@ -40,4 +40,12 @@ export class UserProfileComponent implements OnInit {
       this.router.navigate(["/searchhistory"]);
     }
   }
+
+  clickHistory() {
+    if (!this.userService.isLoggedIn()) {
+      this.router.navigate(["/login"]);
+    } else {
+      this.router.navigate(["/clickhistory"]);
+    }
+  }
 }

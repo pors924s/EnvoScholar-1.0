@@ -10,5 +10,6 @@ router.post("/authenticate", ctrlUser.authenticate);
 router.get("/userProfile", jwtHelper.verifyJwtToken, ctrlUser.userProfile);
 router.post("/savearticle", jwtHelper.verifyJwtToken, ctrlUser.saveArticle);
 router.post("/savesearch", jwtHelper.verifyJwtToken, ctrlUser.saveSearch);
+router.post("/saveclick", jwtHelper.verifyJwtToken, ctrlUser.saveClick);
 
 module.exports = router;
