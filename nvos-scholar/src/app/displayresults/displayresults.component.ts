@@ -140,11 +140,15 @@ export class DisplayresultsComponent implements OnInit {
   }*/
 
   website(specifyWebsite){
-    alert("You are about to be directed to a different webpage.")
-    if(specifyWebsite == 0)
-      return "https://academic.microsoft.com/#/search?iq=%40" + this.query + "%40&q=" + this.query + "&filters=&from=0&sort=0";
-    else
-      return "https://www.semanticscholar.org/search?q=" + this.query + "&sort=relevance";
+    if(specifyWebsite == 0){
+      if(confirm("You are about to be directed to academic.microsoft.com."))
+        window.open('https://academic.microsoft.com/#/search?iq=%40' + this.query + '%40&q=' + this.query + '&filters=&from=0&sort=0', '_blank');
+    }
+
+    else{
+      if(confirm("You are about to be directed to semanticscholar.com."))
+        window.open('https://www.semanticscholar.org/search?q=' + this.query +'&sort=relevance', '_blank');
+    }
   }
 
 
