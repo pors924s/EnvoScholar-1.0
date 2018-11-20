@@ -26,4 +26,9 @@ export class SearchHistoryComponent implements OnInit {
       this.router.navigate(["/userprofile"]);
     }
   }
+
+  onLogout() {
+    this.userService.deleteToken();
+    this.router.navigate(["/login"]);
+  }
 }
