@@ -4,6 +4,10 @@ const _ = require("lodash");
 
 const User = mongoose.model("User");
 
+/**
+ * Gets called from the index.router.js
+ * Registers a new user
+ */
 module.exports.register = (req, res, next) => {
   var user = new User();
   user.fullName = req.body.fullName;
@@ -23,6 +27,10 @@ module.exports.register = (req, res, next) => {
   });
 };
 
+/**
+ * Gets called from the index.router.js
+ * Authenticates the login information
+ */
 module.exports.authenticate = (req, res, next) => {
   //call for passport authentication
   passport.authenticate("local", (err, user, info) => {
@@ -34,6 +42,10 @@ module.exports.authenticate = (req, res, next) => {
   })(req, res);
 };
 
+/**
+ * Gets called from the index.router.js
+ * Returns the user profile information
+ */
 module.exports.userProfile = (req, res, next) => {
   User.findOne({ _id: req._id }, (err, user) => {
     if (!user) {
@@ -49,6 +61,10 @@ module.exports.userProfile = (req, res, next) => {
   });
 };
 
+/**
+ * Gets called from the index.router.js
+ * Saves an article to the users profile
+ */
 module.exports.saveArticle = (req, res, next) => {
   User.findOneAndUpdate(
     { _id: req._id },
@@ -68,6 +84,10 @@ module.exports.saveArticle = (req, res, next) => {
   );
 };
 
+/**
+ * Gets called from the index.router.js
+ * Saves a search entry to a users profile
+ */
 module.exports.saveSearch = (req, res, next) => {
   User.findOneAndUpdate(
     { _id: req._id },
@@ -87,6 +107,10 @@ module.exports.saveSearch = (req, res, next) => {
   );
 };
 
+/**
+ * Gets called from the index.router.js
+ * Saves a clicked article to the users profile
+ */
 module.exports.saveClick = (req, res, next) => {
   User.findOneAndUpdate(
     { _id: req._id },

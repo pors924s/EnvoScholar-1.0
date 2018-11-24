@@ -311,6 +311,9 @@ export class DisplayresultsComponent implements OnInit {
     window.open(url, "_blank");
   }
 
+  //This function is called when the user clicks the Save link
+  //It will get the article information and put it into an object to
+  //then send over through the addArticle() function
   saveArticle(
     title: string,
     authors: Array<string>,
@@ -329,6 +332,7 @@ export class DisplayresultsComponent implements OnInit {
     );
   }
 
+  //Opens the Share popup
   share(id) {
     var e = document.getElementById(id);
     if (e.style.display == "block") {

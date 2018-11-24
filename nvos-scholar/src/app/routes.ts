@@ -7,7 +7,6 @@ import { SignUpComponent } from "./user/sign-up/sign-up.component";
 import { UserProfileComponent } from "./user-profile/user-profile.component";
 import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { AuthGuard } from "./auth/auth.guard";
-import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
 import { SearchHistoryComponent } from "./search-history/search-history.component";
 import { ClickHistoryComponent } from "./click-history/click-history.component";
 
@@ -23,10 +22,6 @@ export const appRoutes: Routes = [
   {
     path: "article",
     component: ArticleinfoComponent
-  },
-  {
-    path: "savedarticles",
-    component: SavedarticlesComponent
   },
   {
     path: "signup",

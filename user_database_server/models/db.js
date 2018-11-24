@@ -1,4 +1,6 @@
 const mongoose = require("mongoose");
+
+//Connecting to the database
 mongoose.connect(
   process.env.MONGODB_URI,
   err => {

@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 
 var User = mongoose.model("User");
 
+//Used for logging in using passport
 passport.use(
   new localStrategy({ usernameField: "email" }, (username, password, done) => {
     User.findOne({ email: username }, (err, user) => {

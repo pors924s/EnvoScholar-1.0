@@ -18,11 +18,10 @@ import { SignInComponent } from "./user/sign-in/sign-in.component";
 import { appRoutes } from "./routes";
 import { AuthGuard } from "./auth/auth.guard";
 import { AuthInterceptor } from "./auth/auth.interceptor";
-import { SavedarticlesComponent } from "./savedarticles/savedarticles.component";
 
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
-import { SearchHistoryComponent } from './search-history/search-history.component';
-import { ClickHistoryComponent } from './click-history/click-history.component';
+import { SearchHistoryComponent } from "./search-history/search-history.component";
+import { ClickHistoryComponent } from "./click-history/click-history.component";
 
 @NgModule({
   declarations: [
@@ -35,7 +34,6 @@ import { ClickHistoryComponent } from './click-history/click-history.component';
     SignUpComponent,
     UserProfileComponent,
     SignInComponent,
-    SavedarticlesComponent,
     SearchHistoryComponent,
     ClickHistoryComponent
   ],

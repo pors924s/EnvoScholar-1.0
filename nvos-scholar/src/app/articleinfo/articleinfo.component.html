@@ -121,8 +121,8 @@
           <small id="year">{{ year | slice: 0:10 }}</small>
           <p id="abstract">{{ abstract }}</p>
 
-          <!-- Citation button with popup box -->
           <div style="margin-bottom: 10px;">
+            <!-- Citation button with popup box -->
             <div id="popupbox" class="popupposition">
               <div id="popupwrapper">
                 <div id="container">
@@ -143,9 +143,11 @@
                 </div>
               </div>
             </div>
+            <!-- View PDF link which opens Science Direct page in new tab -->
             <a href="{{url}}" target="_blank" class="subtasks">
               <i class="fa fa-file-pdf-o"></i>&nbsp;View PDF
             </a>
+            <!-- Cite link with popup -->
             <a
               href="javascript:void(0)"
               (click)="toggle_cite('popupbox')"
@@ -153,6 +155,7 @@
             >
               <i class="fa fa-quote-right"></i>&nbsp;Cite
             </a>
+            <!-- Save link -->
             <a
               href="javascript:void(0)"
               (click)="saveArticle(article_title, authors, year, abstract)"
@@ -161,6 +164,7 @@
               >&nbsp;<i class="fa fa-save"></i>&nbsp;Save
             </a>
 
+            <!-- Share link popup information -->
             <div id="share" class="popupposition">
               <div id="popupwrapper">
                 <div id="container">
@@ -184,6 +188,7 @@
               </div>
             </div>
 
+            <!-- Share link -->
             <a
               href="javascript:void(0)"
               (click)="share('share')"
@@ -208,6 +213,7 @@
         </div>
       </div>
 
+      <!-- Citations (currently dummy text) -->
       <h2 class="header" style="margin-left: 91px; margin-top: 30px;">
         Citations
       </h2>

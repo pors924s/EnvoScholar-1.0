@@ -17,6 +17,11 @@ export class SignUpComponent implements OnInit {
 
   ngOnInit() {}
 
+  /**
+   * This function gets called when a user submits their sign up information.
+   * It will take the information taken from the form (information from the input boxes in the HTML)
+   * and send it to the backend server to be sent to the MongoDB
+   */
   onSubmit(form: NgForm) {
     this.userService.postUser(form.value).subscribe(
       res => {
@@ -34,6 +39,7 @@ export class SignUpComponent implements OnInit {
     );
   }
 
+  //Clears the sign up form when a user submits their information
   resetForm(form: NgForm) {
     this.userService.selectedUser = {
       fullName: "",

@@ -1,5 +1,6 @@
 const jwt = require("jsonwebtoken");
 
+//JWT token used for login authentiation
 module.exports.verifyJwtToken = (req, res, next) => {
   var token;
   if ("authorization" in req.headers)

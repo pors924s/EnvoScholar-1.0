@@ -77,6 +77,7 @@ export class UserService {
     localStorage.removeItem("token");
   }
 
+  //Used to get a user's token
   getUserPayload() {
     var token = this.getToken();
     if (token) {

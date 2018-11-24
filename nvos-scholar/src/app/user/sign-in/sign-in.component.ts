@@ -20,12 +20,19 @@ export class SignInComponent implements OnInit {
 
   serverErrorMessages: string;
 
+  /**
+   * This function gets called when the page loads.
+   * Will redirect the user to their profile page if they are already logged in
+   */
   ngOnInit() {
     if (this.userService.isLoggedIn()) {
       this.router.navigateByUrl("/userprofile");
     }
   }
 
+  /**
+   * Accepts user information from the HTML page to login
+   */
   onSubmit(form: NgForm) {
     this.userService.login(form.value).subscribe(
       res => {

@@ -13,6 +13,11 @@ export class HomepageComponent implements OnInit {
   constructor(private userService: UserService) {}
   ngOnInit() {}
 
+  /**
+   *
+   * This function gets called when a user submits a search
+   * It will redirect to the displayresults page with the search query entered
+   */
   openSearchPage(form: NgForm) {
     window.location.href =
       "http://localhost:4200/displayresults?search=" + form.value.search;

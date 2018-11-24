@@ -35,6 +35,10 @@ export class ArticleinfoComponent implements OnInit {
     private userService: UserService,
     private router: Router
   ) {}
+
+  //This function gets called when the page opens
+  //It will return the article information for the query thats in the URL
+  //and assign the variables with their corresponding attributes
   ngOnInit() {
     this.http
       .get(
@@ -55,11 +59,9 @@ export class ArticleinfoComponent implements OnInit {
       });
   }
 
-  //Click Article Website to open the link on a new page
-  articleURL(url: string) {
-    window.open(url, "_blank");
-  }
-
+  //This function is called when the user clicks the Save link
+  //It will get the article information and put it into an object to
+  //then send over through the addArticle() function
   saveArticle(
     title: string,
     authors: Array<string>,
@@ -78,6 +80,8 @@ export class ArticleinfoComponent implements OnInit {
     );
   }
 
+  //Opens Cite popup (currently hard coded text since the JSON file
+  //does not have citation information)
   toggle_cite(id) {
     var e = document.getElementById(id);
     if (e.style.display == "block") {
@@ -87,6 +91,7 @@ export class ArticleinfoComponent implements OnInit {
     }
   }
 
+  //Opens the Share popup
   share(id) {
     var e = document.getElementById(id);
     if (e.style.display == "block") {
