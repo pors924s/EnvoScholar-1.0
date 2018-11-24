@@ -9,19 +9,13 @@ import { Feedback } from "./feedBack.model";
 })
 export class FeedbackService {
   selectedFeeback: Feedback = {
-    question1: [],
-    question2: []
-  }
-  
+    question: []
+  };
+
   constructor(private http: HttpClient) {}
 
   //HttpMethods
-  question1(answer: object) {
-    return this.http.post(environment.apiBaseUrl + "/question1", answer);
+  question(answer: object) {
+    return this.http.post(environment.apiBaseUrl + "/question", answer);
   }
-
-  question2(answer: object) {
-    return this.http.post(environment.apiBaseUrl + "/question2", answer);
-  }
-
 }

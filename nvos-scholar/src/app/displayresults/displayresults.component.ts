@@ -342,30 +342,19 @@ export class DisplayresultsComponent implements OnInit {
     }
   }
 
-  
   //============FEEDBACK============//
-  feedback(){
+  feedback() {
     var question1 = prompt("How do you like the website?", "I love it!");
     var question2 = prompt("Rate your experience: 1-10", "10");
     /*if (!this.userService.isLoggedIn()) {
       this.router.navigateByUrl("/login");
     };*/
     var answer1 = {
-      question1: { question1 }
+      question: { question1, question2 }
     };
 
-    this.userService.question1(answer1).subscribe(
-      
-    );
-    var answer2 = {
-      question2: { question2 }
-    };
-
-    this.userService.question2(answer2).subscribe(
-      
-    );
+    this.userService.question(answer1).subscribe();
   }
-  
 
   //============TEST TO CONSOLE============//
   toConsole() {

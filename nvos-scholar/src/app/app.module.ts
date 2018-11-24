@@ -22,7 +22,6 @@ import { AuthInterceptor } from "./auth/auth.interceptor";
 import { JwSocialButtonsModule } from "jw-angular-social-buttons";
 import { SearchHistoryComponent } from "./search-history/search-history.component";
 import { ClickHistoryComponent } from "./click-history/click-history.component";
-import { FeedbackComponent } from "./feedback/feedback.component";
 
 @NgModule({
   declarations: [
@@ -36,8 +35,7 @@ import { FeedbackComponent } from "./feedback/feedback.component";
     UserProfileComponent,
     SignInComponent,
     SearchHistoryComponent,
-    ClickHistoryComponent,
-    FeedbackComponent
+    ClickHistoryComponent
   ],
   imports: [
     BrowserModule,

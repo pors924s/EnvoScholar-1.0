@@ -60,13 +60,10 @@ export class UserService {
     return this.http.post(environment.apiBaseUrl + "/savesearch", search);
   }
 
-  question1(answer: object) {
-    return this.http.post(environment.apiBaseUrl + "/question1", answer);
+  question(answer: object) {
+    return this.http.post(environment.apiBaseUrl + "/question", answer);
   }
 
-  question2(answer: object) {
-    return this.http.post(environment.apiBaseUrl + "/question2", answer);
-  }
   //Helper Methods
 
   //Sets login token
