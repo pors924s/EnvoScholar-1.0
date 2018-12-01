@@ -62,10 +62,14 @@
         </div>
       </div>
       <div style="margin-bottom: 10px;">
-          <a href="javascript:void(0)" (click)="website(0)" id="subtasks">
-            <i class="fa fa-file-text-o"></i>&nbsp;View Results In Microsoft Academic</a>
-          <a href="javascript:void(0)" (click)="website(1)"  id="subtasks">
-            <i class="fa fa-file-text-o"></i>&nbsp;View Results In Semantic Scholar</a>
+        <a href="javascript:void(0)" (click)="website(0)" id="subtasks">
+          <i class="fa fa-file-text-o"></i>&nbsp;View Results In Microsoft
+          Academic</a
+        >
+        <a href="javascript:void(0)" (click)="website(1)" id="subtasks">
+          <i class="fa fa-file-text-o"></i>&nbsp;View Results In Semantic
+          Scholar</a
+        >
       </div>
 
       <div class="editResults">
@@ -94,7 +98,7 @@
             <input
               class="searchbutton filter-button"
               type="button"
-              value="ClearFilters"
+              value="Clear Filters"
               (click)="clearFilters()"
               style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px; float:right"
             />
@@ -128,7 +132,11 @@
           </button>
         </div>
       </div>
-      <button class="feedback searchbutton filter-button" (click)="feedback()" style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;">
+      <button
+        class="feedback searchbutton filter-button"
+        (click)="feedback()"
+        style="color:#B6862C;/*height:40px;*//*width:40px;*/margin:0px;padding:10px 20px;border-radius:20px; margin-left: 10px; margin-bottom: 10px;"
+      >
         Feedback
       </button>
 
@@ -283,32 +291,21 @@
       </div>
     </div>
 
-  <!--Footer-->
-  <div class="footer-basic">
-    <footer>
-      <ul class="list-inline">
-        <li class="list-inline-item">
-          <a href="#">Home</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Services</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">About</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Terms</a>
-        </li>
-        <li class="list-inline-item">
-          <a href="#">Privacy Policy</a>
-        </li>
-      </ul>
-      <p class="copyright">Envo Scholar © 2018</p>
-    </footer>
-  </div>
-  <script src="assets/js/jquery.min.js"></script>
-  <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-  <script src="assets/js/bs-animation.js"></script>
-</body>
-
+    <!-- Footer -->
+    <div class="footer-basic">
+      <footer>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a>Home</a></li>
+          <li class="list-inline-item"><a>Services</a></li>
+          <li class="list-inline-item"><a>About</a></li>
+          <li class="list-inline-item"><a>Terms</a></li>
+          <li class="list-inline-item"><a>Privacy Policy</a></li>
+        </ul>
+        <p class="copyright">Envo Scholar © 2018</p>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="assets/js/bs-animation.js"></script>
+  </body>
 </html>

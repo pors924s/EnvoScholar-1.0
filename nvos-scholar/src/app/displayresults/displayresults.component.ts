@@ -102,6 +102,7 @@ export class DisplayresultsComponent implements OnInit {
           this.numArticles
       )
       .subscribe(response => {
+        console.log(response);
         //Set this.response to the JSON file
         this.response = response;
         //Set this.article_info to the JSON file to be sent to another component through the ArticleInformationService
@@ -120,21 +121,6 @@ export class DisplayresultsComponent implements OnInit {
       this.finalResponse = filteredDate;
     }
   }
-  /*
-  academicSearch() {
-    this.http
-      .get(
-        "https://westus.api.cognitive.microsoft.com/academic/v1.0/evaluate?expr=" + this.query
-        
-      )
-      .subscribe(response => {
-        //Set this.response to the JSON file
-        this.response = response; 
-        console.log(this.response);
-      });
-      
-      
-  }*/
 
   website(specifyWebsite) {
     if (specifyWebsite == 0) {
@@ -290,7 +276,6 @@ export class DisplayresultsComponent implements OnInit {
 
       this.userService.getUserProfile().subscribe(
         res => {
-          console.log(clickInfo);
           this.userDetails = res["user"];
           this.userService.addClick(clickInfo).subscribe();
         },
@@ -357,7 +342,5 @@ export class DisplayresultsComponent implements OnInit {
   }
 
   //============TEST TO CONSOLE============//
-  toConsole() {
-    console.log("You done testedededed it");
-  }
+  toConsole() {}
 }

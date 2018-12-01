@@ -9,7 +9,6 @@ import { NgForm } from "@angular/forms";
   styleUrls: ["./homepage.component.css"]
 })
 export class HomepageComponent implements OnInit {
-  userDetails;
   constructor(private userService: UserService) {}
   ngOnInit() {}
 

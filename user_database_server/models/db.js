@@ -14,18 +14,20 @@ mongoose.connect(
   }
 );
 
-var MongoClient = require('mongodb').MongoClient;
+var MongoClient = require("mongodb").MongoClient;
 var url = "mongodb://localhost:27017/EnvoScholar";
 
-MongoClient.connect(url, function(err, db) {
-  if (err) throw err;
-  var dbo = db.db("EnvoScholar");
-  dbo.createCollection("feedBacks", function(err, res) {
+MongoClient.connect(
+  url,
+  function(err, db) {
     if (err) throw err;
-    console.log("Collection created!");
-    db.close();
-  });
-});
+    var dbo = db.db("EnvoScholar");
+    dbo.createCollection("feedBacks", function(err, res) {
+      if (err) throw err;
+      db.close();
+    });
+  }
+);
 
 require("./feedBack.model");
 require("./user.model");
